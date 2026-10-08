@@ -1,0 +1,6 @@
+# Jagvix — robots.txt
+User-agent: *
+Allow: /
+Disallow: /pages/security-policy.html
+
+Sitemap: https://www.jagvix.com/sitemap.xml
