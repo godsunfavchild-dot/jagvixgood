@@ -1,0 +1,14 @@
+/* TEAM */
+  Company: Jagvix
+  Site: jagvix.com
+  Location: Jagdalpur, Bastar, Chhattisgarh, India
+
+/* THANKS */
+  Our clients and the open-source community.
+
+/* SITE */
+  Last Updated: 2026-10
+  Language: English
+  Technology: HTML5, CSS3, Vanilla JavaScript
+  Design: Custom (single-page marketing site)
+  Standards: HTML5, WCAG 2.1 AA, RFC 9116
