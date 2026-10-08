@@ -1,0 +1,3269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' data:; form-action 'self' https://wa.me; object-src 'none'; base-uri 'self';">
+  <meta name="description" content="Jagvix is an AI-powered growth company based in Jagdalpur, Bastar, Chhattisgarh. Marketing, AI automation, websites and video production under one team.">
+  <meta name="theme-color" content="#2a1208">
+  <title>Jagvix — AI-Powered Growth Company</title>
+
+  <style>
+    /* ==========================================================================
+       1. DESIGN SYSTEM & CSS VARIABLES
+       ========================================================================== */
+    :root {
+      /* Brand palette */
+      --or: #ff5a10;
+      --or-light: #ff8a3d;
+      --or-deep: #e8400a;
+      --amber: #ffb347;
+
+      /* Dark browns */
+      --bg-dark-base: #120b08;
+      --bg-hero: #2a1208;
+      --bg-why: #1d130e;
+      --bg-work: #160d09;
+      --bg-contact: #160d09;
+
+      /* Section backgrounds */
+      --bg-services: #fff3e8;
+      --bg-process: #d9631a;
+      --bg-faq: #fff3e8;
+
+      /* Light / cream */
+      --cream-base: #fff8f3;
+      --cream-card: #fffaf6;
+      --cream-alt: #fff3e8;
+      --border-light: #ffd2b3;
+      --border-light-soft: #f1d9c9;
+
+      /* Active theme variables (Driven by scroll observer) */
+      --page-bg: #2a1208;
+      --tx: #fff4ec;
+      --mut: #f6e0d2;
+      --card: rgba(255, 255, 255, 0.08);
+      --line: rgba(255, 255, 255, 0.16);
+      --header-bg: rgba(46, 23, 12, 0.88);
+      --menu-btn-fg: #fff4ec;
+      --menu-btn-bg: rgba(255, 255, 255, 0.06);
+
+      /* Shape & Typography */
+      --font-stack: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      --radius-sm: 12px;
+      --radius-md: 18px;
+      --radius-lg: 24px;
+      --radius-pill: 99px;
+      --glow: 0 8px 24px rgba(255, 90, 16, 0.33);
+      --glow-strong: 0 10px 32px rgba(255, 90, 16, 0.45);
+    }
+
+    /* Reset & Base */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 70px;
+      font-family: var(--font-stack);
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      background-color: var(--page-bg);
+      color: var(--tx);
+      font-size: 16px;
+      line-height: 1.6;
+      transition: background-color 0.6s ease, color 0.6s ease;
+      overflow-x: hidden;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button, input, select, textarea {
+      font-family: inherit;
+      font-size: 16px;
+    }
+
+    /* Container */
+    .w {
+      max-width: 1050px;
+      margin: 0 auto;
+      padding: 0 20px;
+      width: 100%;
+    }
+
+    /* Sections */
+    section {
+      padding: 64px 0;
+      position: relative;
+    }
+
+    /* Scroll progress bar */
+    #progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 0%;
+      background: linear-gradient(90deg, var(--or), var(--amber));
+      z-index: 1000;
+      pointer-events: none;
+      transition: width 0.1s ease-out;
+    }
+
+    /* Section Tag ("tag"): small orange pill (#ff5a10, white text, 12px bold, 1.5px letter-spacing, uppercase, 99px radius, padding 5px 14px) */
+    .tag {
+      display: inline-block;
+      background: var(--or);
+      color: #ffffff;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      border-radius: var(--radius-pill);
+      padding: 5px 14px;
+      margin-bottom: 12px;
+      width: fit-content;
+    }
+
+    /* Typography */
+    h1 {
+      font-size: clamp(34px, 7vw, 60px);
+      line-height: 1.1;
+      letter-spacing: -1px;
+      font-weight: 800;
+      margin-bottom: 18px;
+    }
+
+    .grow-grad {
+      background: linear-gradient(90deg, var(--or), var(--amber));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      display: inline-block;
+    }
+
+    h2 {
+      font-size: clamp(26px, 5vw, 38px);
+      line-height: 1.2;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin-bottom: 8px;
+      display: inline-block;
+      position: relative;
+    }
+
+    /* Heading decoration: every h2 has 60px x 5px rounded bar underneath (#ff5a10 -> #ffb347) */
+    h2::after {
+      content: "";
+      display: block;
+      width: 60px;
+      height: 5px;
+      border-radius: var(--radius-pill);
+      background: linear-gradient(90deg, var(--or), var(--amber));
+      margin-top: 10px;
+    }
+
+    /* Highlighted words: marker underline */
+    .hl {
+      background: linear-gradient(transparent 58%, rgba(255, 90, 16, 0.32) 58%);
+      padding: 0 4px;
+      border-radius: 4px;
+    }
+
+    .sub {
+      color: var(--mut);
+      font-size: 16px;
+      line-height: 1.6;
+      margin-top: 10px;
+      margin-bottom: 32px;
+      max-width: 620px;
+      transition: color 0.6s ease;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--or);
+      color: #ffffff;
+      padding: 14px 26px;
+      border-radius: var(--radius-pill);
+      font-weight: 700;
+      font-size: 16px;
+      border: none;
+      cursor: pointer;
+      box-shadow: var(--glow);
+      transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
+      text-align: center;
+      text-decoration: none;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--glow-strong);
+      background: var(--or-light);
+    }
+
+    .btn:active {
+      transform: translateY(0);
+    }
+
+    .btn.btn-outline {
+      background: transparent;
+      border: 2px solid var(--line);
+      color: var(--tx);
+      box-shadow: none;
+    }
+
+    .btn.btn-outline:hover {
+      border-color: var(--or);
+      color: var(--or);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(255, 90, 16, 0.15);
+    }
+
+    /* Reveal Animation (fade in & slide up 26px, 0.7s) */
+    .rv {
+      opacity: 0;
+      transform: translateY(26px);
+      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform;
+    }
+
+    .rv.in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Card base hover effect (lift -4px, orange border, soft orange shadow) */
+    .card-hoverable {
+      transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card-hoverable:hover {
+      transform: translateY(-4px);
+      border-color: var(--or) !important;
+      box-shadow: var(--glow) !important;
+    }
+
+    /* ==========================================================================
+       3. HEADER & MENU
+       ========================================================================== */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      height: 62px;
+      background-color: var(--header-bg);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+      padding-top: env(safe-area-inset-top, 0px);
+      transition: background-color 0.6s ease, border-color 0.6s ease;
+    }
+
+    .header-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 100%;
+      position: relative;
+    }
+
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 900;
+      font-size: 24px;
+      letter-spacing: -1px;
+      color: var(--tx);
+      transition: color 0.6s ease;
+    }
+
+    /* Official Jagvix logo icon SVG */
+    .jv-logo-svg {
+      flex-shrink: 0;
+      width: 44px;
+      height: 36px;
+      filter: drop-shadow(0 2px 8px rgba(255, 90, 16, 0.35));
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--mut);
+      transition: color 0.6s ease;
+    }
+
+    .nav-links a {
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--or);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .header-btn {
+      padding: 9px 18px;
+      font-size: 14px;
+    }
+
+    /* Menu Button: round 44x44px, transparent/card background, 1.5px solid orange border */
+    #menu-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-pill);
+      background: var(--menu-btn-bg);
+      border: 1.5px solid var(--or);
+      color: var(--menu-btn-fg);
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      position: relative;
+      transition: background-color 0.25s ease, color 0.25s ease, transform 0.2s ease;
+      padding: 0;
+    }
+
+    #menu-btn:hover {
+      transform: scale(1.04);
+    }
+
+    #menu-btn svg {
+      width: 22px;
+      height: 22px;
+      display: block;
+      color: currentColor;
+    }
+
+    #menu-btn .close-icon {
+      display: none;
+      font-size: 22px;
+      font-weight: 700;
+      line-height: 1;
+      color: #ffffff;
+    }
+
+    #menu-btn.open {
+      background: var(--or) !important;
+      border-color: var(--or) !important;
+      color: #ffffff !important;
+    }
+
+    #menu-btn.open .list-icon {
+      display: none;
+    }
+
+    #menu-btn.open .close-icon {
+      display: block;
+    }
+
+    /* Dropdown Menu (Solid cream #fffaf6, border #ffd2b3, NEVER transparent) */
+    #menu-dropdown {
+      display: none;
+      position: absolute;
+      right: 20px;
+      top: 66px;
+      width: 250px;
+      background: #fffaf6 !important;
+      border: 1px solid var(--border-light) !important;
+      border-radius: var(--radius-md);
+      padding: 10px 8px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.28);
+      z-index: 110;
+      opacity: 0;
+      transform: translateY(-8px);
+      transition: opacity 0.25s ease, transform 0.25s ease;
+    }
+
+    #menu-dropdown.open {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    #menu-dropdown small {
+      display: block;
+      padding: 6px 14px 2px;
+      color: var(--or-deep);
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    #menu-dropdown a {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 14px;
+      border-radius: var(--radius-sm);
+      font-size: 14.5px;
+      font-weight: 600;
+      color: #2a160c !important;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+
+    #menu-dropdown a:hover {
+      background: var(--or) !important;
+      color: #ffffff !important;
+    }
+
+    #menu-dropdown hr {
+      border: 0;
+      border-top: 1px solid var(--border-light-soft);
+      margin: 6px 0;
+    }
+
+    @media (max-width: 720px) {
+      .nav-links {
+        display: none;
+      }
+    }
+
+    /* ==========================================================================
+       4. HERO SECTION & SATURN PLANET (BIG, SMOOTH, INTERACTIVE, ZIGZAG INTRO)
+       ========================================================================== */
+    .hero {
+      padding-top: 36px;
+      padding-bottom: 72px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(750px 520px at 50% 28%, rgba(255, 90, 16, 0.28), transparent 72%),
+        linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px) 0 0 / 48px 48px,
+        linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px) 0 0 / 48px 48px;
+      mask-image: radial-gradient(ellipse at 50% 32%, #000 20%, transparent 75%);
+      -webkit-mask-image: radial-gradient(ellipse at 50% 32%, #000 20%, transparent 75%);
+      pointer-events: none;
+    }
+
+    .hero .w {
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Saturn 3D Interactive Stage */
+    .planet-stage {
+      margin: 0 auto 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      perspective: 1200px;
+      position: relative;
+    }
+
+    /* Big Saturn Planet Container (Sized generously for impact) */
+    .planet-3d-model {
+      width: clamp(320px, 46vw, 440px);
+      height: clamp(320px, 46vw, 440px);
+      aspect-ratio: 1;
+      position: relative;
+      transform-style: preserve-3d;
+      cursor: grab;
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: none;
+      filter: drop-shadow(0 14px 50px rgba(232, 56, 13, 0.45));
+      transition: filter 0.3s ease;
+    }
+
+    .planet-3d-model:active {
+      cursor: grabbing;
+    }
+
+    /* Zigzag Entrance Animation on Page Open */
+    .planet-3d-model.intro-zigzag {
+      animation: planetZigzagIntro 1.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      will-change: transform, opacity;
+    }
+
+    @keyframes planetZigzagIntro {
+      0% {
+        opacity: 0;
+        transform: translate3d(-150px, -120px, 0) scale(0.55) rotate(-20deg);
+      }
+      22% {
+        opacity: 0.95;
+        transform: translate3d(130px, -55px, 0) scale(0.78) rotate(15deg);
+      }
+      48% {
+        opacity: 1;
+        transform: translate3d(-75px, 25px, 0) scale(0.9) rotate(-8deg);
+      }
+      74% {
+        opacity: 1;
+        transform: translate3d(40px, -10px, 0) scale(1.02) rotate(4deg);
+      }
+      88% {
+        opacity: 1;
+        transform: translate3d(-10px, 4px, 0) scale(0.99) rotate(-1deg);
+      }
+      100% {
+        opacity: 1;
+        transform: translate3d(0, 0, 0) scale(1) rotate(0deg);
+      }
+    }
+
+    /* Idle Gentle Floating Loop */
+    .planet-3d-model.idle-float {
+      animation: float-planet 4.5s ease-in-out infinite;
+      will-change: transform;
+    }
+
+    @keyframes float-planet {
+      0%, 100% {
+        transform: translate3d(0, 0, 0);
+      }
+      50% {
+        transform: translate3d(0, -14px, 0);
+      }
+    }
+
+    .saturn-svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+      overflow: visible;
+    }
+
+    /* Interactive hint badge */
+    .planet-hint {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: rgba(255, 244, 236, 0.6);
+      margin-top: -6px;
+      margin-bottom: 12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      pointer-events: none;
+      transition: opacity 0.4s ease;
+    }
+
+    .planet-3d-model:hover + .planet-hint {
+      color: var(--amber);
+    }
+
+    /* Orbiting satellite speck spin */
+    @keyframes orbit-speck {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* Ring pulse when hovered */
+    .saturn-ring-group {
+      transition: filter 0.3s ease, opacity 0.3s ease;
+    }
+
+    .planet-3d-model:hover .saturn-ring-group {
+      filter: drop-shadow(0 0 20px rgba(255, 140, 40, 0.75));
+    }
+
+    .hero-lead {
+      color: var(--mut);
+      font-size: 18px;
+      max-width: 620px;
+      margin: 16px auto 28px;
+      transition: color 0.6s ease;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 22px;
+    }
+
+    .hero-location {
+      font-size: 14px;
+      color: var(--mut);
+      margin-top: 14px;
+      transition: color 0.6s ease;
+    }
+
+    /* Stats Grid */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+      margin-top: 48px;
+    }
+
+    .stat-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      padding: 22px 18px;
+      text-align: center;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, background 0.6s ease, border 0.6s ease;
+    }
+
+    .stat-card b {
+      display: block;
+      font-size: 28px;
+      color: var(--or);
+      font-weight: 800;
+      margin-bottom: 4px;
+    }
+
+    .stat-card span {
+      font-size: 14px;
+      color: var(--mut);
+      transition: color 0.6s ease;
+    }
+
+    /* ==========================================================================
+       5. WHY JAGVIX (#why)
+       ========================================================================== */
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      padding: 26px;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, background 0.6s ease, border 0.6s ease;
+    }
+
+    .card .num {
+      color: var(--or);
+      font-weight: 800;
+      font-size: 16px;
+      display: inline-block;
+      margin-bottom: 12px;
+    }
+
+    .card h3 {
+      font-size: 21px;
+      margin-bottom: 8px;
+      font-weight: 700;
+      color: var(--tx);
+      transition: color 0.6s ease;
+    }
+
+    .card p {
+      color: var(--mut);
+      font-size: 15px;
+      line-height: 1.6;
+      transition: color 0.6s ease;
+    }
+
+    /* ==========================================================================
+       6. SERVICES (#services) — BOLD, EMOJI-FREE, RESPONSIVE ICONS
+       ========================================================================== */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+      align-items: start;
+    }
+
+    @media (max-width: 640px) {
+      .services-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+    }
+
+    .services-grid details {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      padding: 0;
+      transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.6s ease;
+    }
+
+    .services-grid details[open] {
+      border-color: var(--or) !important;
+      box-shadow: 0 10px 30px rgba(255, 90, 16, 0.22);
+    }
+
+    .services-grid summary {
+      padding: 18px 20px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      cursor: pointer;
+      list-style: none;
+      user-select: none;
+    }
+
+    .services-grid summary::-webkit-details-marker {
+      display: none;
+    }
+
+    /* Bespoke Vector Icon Tile */
+    .service-ico {
+      flex: none;
+      width: 48px;
+      height: 48px;
+      border-radius: var(--radius-sm);
+      background: rgba(128, 128, 128, 0.12);
+      display: grid;
+      place-items: center;
+      color: var(--or);
+      transition: background 0.25s ease, color 0.25s ease, transform 0.25s ease;
+    }
+
+    .service-ico svg {
+      width: 24px;
+      height: 24px;
+      display: block;
+    }
+
+    .services-grid details[open] .service-ico {
+      background: var(--or);
+      color: #ffffff;
+      transform: scale(1.05);
+      box-shadow: 0 4px 16px rgba(255, 90, 16, 0.4);
+    }
+
+    .service-tx {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .service-tx h3 {
+      font-size: clamp(17px, 2vw, 18.5px);
+      font-weight: 800;
+      margin: 0;
+      line-height: 1.3;
+      color: var(--tx);
+      letter-spacing: -0.2px;
+      transition: color 0.6s ease;
+    }
+
+    .service-tx .subline {
+      color: var(--mut);
+      font-size: 14px;
+      font-weight: 500;
+      display: block;
+      margin-top: 3px;
+      line-height: 1.4;
+      transition: color 0.6s ease;
+    }
+
+    .service-arrow {
+      flex: none;
+      color: var(--mut);
+      font-size: 13px;
+      transition: transform 0.25s ease, color 0.25s ease;
+    }
+
+    .services-grid details[open] .service-arrow {
+      transform: rotate(180deg);
+      color: var(--or);
+    }
+
+    /* Open Content Area (Emoji-free, bold vector check indicators) */
+    .service-content {
+      padding: 10px 22px 22px;
+      color: var(--mut);
+      font-size: 15px;
+      border-top: 1px solid var(--line);
+      transition: color 0.6s ease, border-color 0.6s ease;
+    }
+
+    .service-content ul {
+      list-style: none;
+      padding-top: 6px;
+    }
+
+    .service-content li {
+      margin: 10px 0;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 600;
+      color: var(--tx);
+      line-height: 1.4;
+    }
+
+    .bullet-check {
+      flex: none;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: rgba(255, 90, 16, 0.15);
+      color: var(--or);
+      display: grid;
+      place-items: center;
+    }
+
+    .bullet-check svg {
+      width: 12px;
+      height: 12px;
+      display: block;
+    }
+
+    .service-content a {
+      display: inline-block;
+      margin-top: 14px;
+      color: var(--or);
+      font-weight: 800;
+      font-size: 15px;
+      transition: color 0.2s ease, transform 0.2s ease;
+    }
+
+    .service-content a:hover {
+      color: var(--or-light);
+      transform: translateX(4px);
+    }
+
+    /* ==========================================================================
+       7. HOW WE WORK (#process)
+       ========================================================================== */
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 16px;
+    }
+
+    .step-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      padding: 24px 20px;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, background 0.6s ease, border 0.6s ease;
+    }
+
+    .step-num {
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-sm);
+      background: var(--or);
+      color: #ffffff;
+      font-weight: 800;
+      display: grid;
+      place-items: center;
+      margin-bottom: 14px;
+      font-size: 17px;
+    }
+
+    .step-card h3 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: var(--tx);
+      transition: color 0.6s ease;
+    }
+
+    .step-card p {
+      color: var(--mut);
+      font-size: 15px;
+      line-height: 1.6;
+      transition: color 0.6s ease;
+    }
+
+    /* ==========================================================================
+       8. OUR WORK (#work)
+       ========================================================================== */
+    .marquee-wrapper {
+      overflow: hidden;
+      margin: 24px 0 56px;
+      position: relative;
+      mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+      -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+    }
+
+    .marquee-track {
+      display: flex;
+      gap: 16px;
+      width: max-content;
+      animation: marquee-scroll 28s linear infinite;
+      will-change: transform;
+    }
+
+    .marquee-track.slow {
+      animation-duration: 45s;
+    }
+
+    .marquee-wrapper:hover .marquee-track,
+    .marquee-track.paused {
+      animation-play-state: paused;
+    }
+
+    @keyframes marquee-scroll {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+
+    .client-card {
+      background: #ffffff;
+      color: #222222;
+      border-radius: 16px;
+      padding: 16px 28px;
+      font-weight: 800;
+      font-size: 16px;
+      white-space: nowrap;
+      border: 1px solid var(--border-light);
+      box-shadow: 0 6px 20px rgba(255, 90, 16, 0.12);
+      animation: float-card 5s ease-in-out infinite;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .client-card:nth-child(2n) {
+      animation-delay: 1.2s;
+    }
+
+    .client-card:nth-child(3n) {
+      animation-delay: 2.4s;
+    }
+
+    @keyframes float-card {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-8px);
+      }
+    }
+
+    /* Video cards (210x340px, radius 22px, dark gradient, circular play btn) */
+    .video-card {
+      width: 210px;
+      height: 340px;
+      border-radius: 22px;
+      flex: none;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 18px;
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .video-card:hover {
+      transform: translateY(-6px) scale(1.02);
+      border-color: var(--or);
+      box-shadow: 0 16px 36px rgba(255, 90, 16, 0.35);
+    }
+
+    .video-card .vid-emoji {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      font-size: 34px;
+    }
+
+    .video-card .vid-play-btn {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      background: var(--or);
+      display: grid;
+      place-items: center;
+      font-size: 20px;
+      color: #ffffff;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+      transition: transform 0.25s ease, background 0.25s ease;
+    }
+
+    .video-card:hover .vid-play-btn {
+      transform: translate(-50%, -50%) scale(1.12);
+      background: var(--or-light);
+    }
+
+    .video-card b {
+      font-size: 17px;
+      display: block;
+      margin-bottom: 2px;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+    }
+
+    .video-card small {
+      opacity: 0.9;
+      font-size: 13.5px;
+      text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+    }
+
+    /* ==========================================================================
+       9. FAQ (#faq)
+       ========================================================================== */
+    .faq-list {
+      display: grid;
+      gap: 12px;
+      max-width: 820px;
+      margin: 0 auto;
+    }
+
+    .faq-item {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      padding: 18px 22px;
+      transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.6s ease;
+    }
+
+    .faq-item[open] {
+      border-color: var(--or);
+      box-shadow: 0 8px 24px rgba(255, 90, 16, 0.16);
+    }
+
+    .faq-item summary {
+      font-weight: 700;
+      font-size: 17px;
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      color: var(--tx);
+      user-select: none;
+      transition: color 0.6s ease;
+    }
+
+    .faq-item summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .faq-item summary::after {
+      content: "▼";
+      font-size: 12px;
+      color: var(--or);
+      transition: transform 0.25s ease;
+    }
+
+    .faq-item[open] summary::after {
+      transform: rotate(180deg);
+    }
+
+    .faq-item p {
+      color: var(--mut);
+      margin-top: 12px;
+      line-height: 1.6;
+      font-size: 15.5px;
+      transition: color 0.6s ease;
+    }
+
+    /* ==========================================================================
+       10. CONTACT (#contact) — FIXED SOLID DARK
+       ========================================================================== */
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 28px;
+      align-items: start;
+    }
+
+    @media (max-width: 840px) {
+      .contact-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Form card with SOLID FIXED DARK COLORS (#1f130d) */
+    .contact-form-card {
+      background: #1f130d !important;
+      border: 1px solid #4a2c1c !important;
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      display: grid;
+      gap: 16px;
+      color: #fff4ec !important;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+    }
+
+    .form-group {
+      display: grid;
+      gap: 6px;
+    }
+
+    .form-group label {
+      font-weight: 600;
+      font-size: 14.5px;
+      color: #fff4ec !important;
+    }
+
+    .form-input,
+    .form-select {
+      width: 100%;
+      height: 50px;
+      padding: 0 16px;
+      border-radius: var(--radius-sm);
+      border: 1px solid #5a3722 !important;
+      background: #2f1c12 !important;
+      color: #fff4ec !important;
+      -webkit-text-fill-color: #fff4ec;
+      font-size: 16px;
+      outline: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .form-input::placeholder {
+      color: #b99a88 !important;
+      -webkit-text-fill-color: #b99a88;
+      opacity: 1;
+    }
+
+    .form-input:focus,
+    .form-select:focus {
+      border-color: var(--or) !important;
+      box-shadow: 0 0 0 3px rgba(255, 90, 16, 0.3) !important;
+    }
+
+    .phone-row {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 10px;
+    }
+
+    .chips-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 4px;
+    }
+
+    .chips-group label {
+      cursor: pointer;
+    }
+
+    .chips-group input {
+      display: none;
+    }
+
+    .chips-group span {
+      display: inline-block;
+      padding: 8px 16px;
+      border-radius: var(--radius-pill);
+      border: 1px solid #5a3722;
+      background: #2f1c12;
+      color: #fff4ec;
+      font-size: 14px;
+      font-weight: 500;
+      transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.15s ease;
+      user-select: none;
+    }
+
+    .chips-group input:checked + span {
+      background: var(--or) !important;
+      border-color: var(--or) !important;
+      color: #ffffff !important;
+      font-weight: 600;
+      transform: translateY(-1px);
+    }
+
+    .checkbox-agree {
+      display: flex !important;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 14px;
+      color: #d8c3b5 !important;
+      font-weight: 400 !important;
+      cursor: pointer;
+      line-height: 1.4;
+      margin-top: 4px;
+    }
+
+    .checkbox-agree input {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+      accent-color: var(--or);
+      margin-top: 2px;
+      cursor: pointer;
+    }
+
+    .form-note {
+      color: #b99a88 !important;
+      font-size: 13px;
+      text-align: center;
+      line-height: 1.4;
+    }
+
+    /* Social Cards with SOLID FIXED DARK COLORS (#1f130d) */
+    .social-stack {
+      display: grid;
+      gap: 12px;
+    }
+
+    .social-card {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: #1f130d !important;
+      border: 1px solid #4a2c1c !important;
+      border-radius: var(--radius-md);
+      padding: 16px 20px;
+      font-weight: 700;
+      color: #fff4ec !important;
+      transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+      text-decoration: none;
+    }
+
+    .social-card:hover {
+      border-color: var(--or) !important;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(255, 90, 16, 0.2);
+    }
+
+    .soc-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: var(--radius-sm);
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+    }
+
+    .soc-icon svg {
+      width: 22px;
+      height: 22px;
+      fill: #ffffff;
+    }
+
+    .soc-cta {
+      margin-left: auto;
+      font-weight: 500;
+      font-size: 13.5px;
+      color: #b99a88 !important;
+    }
+
+    /* ==========================================================================
+       11. FOOTER
+       ========================================================================== */
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 48px 0 calc(108px + env(safe-area-inset-bottom, 0px));
+      color: var(--mut);
+      font-size: 14.5px;
+      margin-top: auto;
+      transition: border-color 0.6s ease, color 0.6s ease;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr 1fr;
+      gap: 36px;
+      margin-bottom: 36px;
+    }
+
+    @media (max-width: 820px) {
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 28px;
+      }
+    }
+
+    @media (max-width: 500px) {
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+    }
+
+    .footer-col b {
+      display: block;
+      color: var(--tx);
+      font-size: 13px;
+      letter-spacing: 1.5px;
+      margin-bottom: 14px;
+      font-weight: 800;
+      transition: color 0.6s ease;
+    }
+
+    .footer-col a {
+      display: block;
+      margin: 8px 0;
+      transition: color 0.2s ease;
+    }
+
+    .footer-col a:hover {
+      color: var(--or);
+    }
+
+    .footer-col p {
+      line-height: 1.5;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid var(--line);
+      padding-top: 24px;
+      font-size: 13.5px;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      transition: border-color 0.6s ease;
+    }
+
+    /* ==========================================================================
+       12. AI ASSISTANT CHATBOT (Bilingual + 24-hr Auto-delete)
+       ========================================================================== */
+    #chatbot-container {
+      position: fixed;
+      right: 18px;
+      bottom: calc(18px + env(safe-area-inset-bottom, 0px));
+      z-index: 900;
+    }
+
+    /* 64px Floating action button */
+    #chatbot-fab {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      border: none;
+      background: var(--or);
+      box-shadow: 0 8px 28px rgba(255, 90, 16, 0.6);
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
+    }
+
+    #chatbot-fab:hover {
+      transform: scale(1.06);
+      box-shadow: 0 10px 32px rgba(255, 90, 16, 0.75);
+    }
+
+    #chatbot-fab svg {
+      width: 36px;
+      height: 36px;
+      display: block;
+    }
+
+    /* Chatbot Panel (SOLID CREAM #fffaf6, NEVER TRANSPARENT) */
+    #chatbot-panel {
+      display: none;
+      position: fixed;
+      right: 18px;
+      bottom: calc(92px + env(safe-area-inset-bottom, 0px));
+      max-width: 380px;
+      width: calc(100% - 24px);
+      height: min(500px, 70dvh);
+      background: #fffaf6 !important;
+      border: 1px solid var(--border-light) !important;
+      border-radius: 22px;
+      overflow: hidden;
+      flex-direction: column;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+      color: #2a160c !important;
+      z-index: 950;
+      opacity: 0;
+      transform: translateY(14px) scale(0.97);
+      transition: opacity 0.25s ease, transform 0.25s ease;
+    }
+
+    @media (max-width: 720px) {
+      #chatbot-panel {
+        right: 12px;
+        left: 12px;
+        width: auto;
+        max-width: none;
+      }
+    }
+
+    #chatbot-panel.open {
+      display: flex;
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    .chat-header {
+      background: linear-gradient(90deg, var(--or), var(--or-light));
+      color: #ffffff !important;
+      padding: 14px 18px;
+      font-weight: 800;
+      font-size: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .chat-header button {
+      background: none;
+      border: none;
+      color: #ffffff;
+      font-size: 24px;
+      cursor: pointer;
+      line-height: 1;
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+
+    .chat-header button:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    #chat-messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      background: #fffaf6 !important;
+    }
+
+    .chat-msg {
+      max-width: 86%;
+      padding: 11px 15px;
+      border-radius: 16px;
+      font-size: 14.5px;
+      line-height: 1.5;
+      word-break: break-word;
+      white-space: pre-line;
+    }
+
+    .chat-msg.bot {
+      background: #ffffff !important;
+      color: #2a160c !important;
+      border: 1px solid var(--border-light-soft) !important;
+      align-self: flex-start;
+      border-bottom-left-radius: 4px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    }
+
+    .chat-msg.user {
+      background: var(--or) !important;
+      color: #ffffff !important;
+      align-self: flex-end;
+      border-bottom-right-radius: 4px;
+      box-shadow: 0 4px 12px rgba(255, 90, 16, 0.25);
+    }
+
+    /* Typing indicator dots */
+    .typing-indicator {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 12px 16px;
+    }
+
+    .typing-indicator span {
+      width: 7px;
+      height: 7px;
+      background: var(--or);
+      border-radius: 50%;
+      animation: typing-bounce 1.2s infinite ease-in-out;
+    }
+
+    .typing-indicator span:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    .typing-indicator span:nth-child(3) {
+      animation-delay: 0.4s;
+    }
+
+    @keyframes typing-bounce {
+      0%, 80%, 100% {
+        transform: translateY(0);
+        opacity: 0.4;
+      }
+      40% {
+        transform: translateY(-6px);
+        opacity: 1;
+      }
+    }
+
+    .chat-quick-replies {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      padding: 0 16px 10px;
+      background: #fffaf6 !important;
+      flex-shrink: 0;
+    }
+
+    .chat-quick-replies button {
+      border: 1px solid var(--or);
+      background: #ffffff !important;
+      color: var(--or-deep) !important;
+      border-radius: var(--radius-pill);
+      padding: 6px 12px;
+      font-size: 12.5px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s ease, color 0.2s ease, transform 0.15s ease;
+    }
+
+    .chat-quick-replies button:hover {
+      background: var(--or) !important;
+      color: #ffffff !important;
+      transform: translateY(-1px);
+    }
+
+    .chat-input-row {
+      display: flex;
+      border-top: 1px solid var(--border-light-soft);
+      background: #ffffff !important;
+      flex-shrink: 0;
+    }
+
+    .chat-input-row input {
+      flex: 1;
+      padding: 14px 16px;
+      border: none;
+      outline: none;
+      font-size: 15px;
+      background: #ffffff !important;
+      color: #2a160c !important;
+      -webkit-text-fill-color: #2a160c;
+    }
+
+    .chat-input-row input::placeholder {
+      color: #8a7466 !important;
+      -webkit-text-fill-color: #8a7466;
+    }
+
+    .chat-input-row button {
+      border: none;
+      background: var(--or);
+      color: #ffffff;
+      padding: 0 20px;
+      font-weight: 700;
+      font-size: 15px;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    .chat-input-row button:hover {
+      background: var(--or-light);
+    }
+
+    .chat-footer-note {
+      font-size: 11px;
+      color: #8a7466;
+      text-align: center;
+      padding: 5px 12px;
+      background: #fffaf6;
+      border-top: 1px solid rgba(241, 217, 201, 0.6);
+      flex-shrink: 0;
+    }
+
+    /* Accessibility / Reduced Motion */
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+      .planet-3d-model,
+      .client-card,
+      .marquee-track,
+      .rv,
+      .typing-indicator span {
+        animation: none !important;
+        transition: none !important;
+        transform: none !important;
+        opacity: 1 !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Scroll Progress Bar (3px gradient #ff5a10 -> #ffb347) -->
+  <div id="progress-bar" aria-hidden="true"></div>
+
+  <!-- STICKY HEADER (62px, blur, bottom border) -->
+  <header>
+    <div class="w header-nav">
+      <!-- Logo: Exact Vector Reproduction of Official Jagvix Logo + Wordmark -->
+      <a href="#top" class="logo" aria-label="Jagvix Home">
+        <svg class="jv-logo-svg" viewBox="0 0 100 80" aria-hidden="true">
+          <defs>
+            <linearGradient id="jv-logo-grad" x1="10%" y1="0%" x2="90%" y2="100%">
+              <stop offset="0%" stop-color="#ffa63d" />
+              <stop offset="45%" stop-color="#ff5e12" />
+              <stop offset="100%" stop-color="#df3500" />
+            </linearGradient>
+            <!-- Diagonal Mask Cut (48-degree slit) -->
+            <mask id="jv-cut-mask">
+              <rect width="100" height="80" fill="#ffffff" />
+              <rect x="47" y="10" width="6" height="60" fill="#000000" transform="rotate(48 50 40)" />
+            </mask>
+          </defs>
+
+          <!-- Outer Orbit Crescent Wings -->
+          <!-- Left crescent wing -->
+          <path d="M 36,27 C 22,31 9,41 3,51 C 15,54 30,52 41,45 C 31,43 19,37 16,33 C 21,29 28,27 36,27 Z" fill="url(#jv-logo-grad)" />
+          <!-- Right crescent wing -->
+          <path d="M 64,53 C 78,49 91,39 97,29 C 85,26 70,28 59,35 C 69,37 81,43 84,47 C 79,51 72,53 64,53 Z" fill="url(#jv-logo-grad)" />
+
+          <!-- Center Ring (Split diagonally into two brackets) -->
+          <g mask="url(#jv-cut-mask)">
+            <circle cx="50" cy="40" r="18" fill="none" stroke="url(#jv-logo-grad)" stroke-width="8.5" />
+          </g>
+        </svg>
+        JAGVIX
+      </a>
+
+      <!-- Desktop Nav Links (Hidden under 720px) -->
+      <nav class="nav-links" aria-label="Main Navigation">
+        <a href="#services">Services</a>
+        <a href="#process">How we work</a>
+        <a href="#work">Work</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <!-- Right Actions: Get a review + Round Menu Button -->
+      <div class="header-actions">
+        <a href="#contact" class="btn header-btn">Get a review</a>
+
+        <!-- Menu button: 44x44px round, 1.5px orange border, 3 dots + 3 bars -->
+        <button id="menu-btn" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="menu-dropdown">
+          <svg class="list-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="4" cy="5" r="2.2" fill="#ff5a10" />
+            <rect x="9" y="3.2" width="14" height="3.6" rx="1.8" fill="currentColor" />
+            <circle cx="4" cy="12" r="2.2" fill="#ff5a10" />
+            <rect x="9" y="10.2" width="14" height="3.6" rx="1.8" fill="currentColor" />
+            <circle cx="4" cy="19" r="2.2" fill="#ff5a10" />
+            <rect x="9" y="17.2" width="14" height="3.6" rx="1.8" fill="currentColor" />
+          </svg>
+          <span class="close-icon" aria-hidden="true">✕</span>
+        </button>
+      </div>
+
+      <!-- Dropdown Menu (Solid Cream #fffaf6, NEVER transparent) -->
+      <div id="menu-dropdown" role="menu" aria-label="Quick links">
+        <small>EXPLORE</small>
+        <a href="#top" role="menuitem">🏠 Home</a>
+        <a href="#services" role="menuitem">🛠 Services</a>
+        <a href="#process" role="menuitem">🧭 How we work</a>
+        <a href="#work" role="menuitem">🎬 Our work</a>
+        <a href="#faq" role="menuitem">❓ FAQ</a>
+        <a href="#contact" role="menuitem">✉️ Contact</a>
+        <hr>
+        <small>CONNECT</small>
+        <a href="https://wa.me/919876543210" target="_blank" rel="noopener noreferrer" role="menuitem">💬 WhatsApp</a>
+        <a href="https://instagram.com/jagvix" target="_blank" rel="noopener noreferrer" role="menuitem">📸 Instagram</a>
+        <a href="https://linkedin.com/company/jagvix" target="_blank" rel="noopener noreferrer" role="menuitem">💼 LinkedIn</a>
+        <a href="https://facebook.com/jagvix" target="_blank" rel="noopener noreferrer" role="menuitem">👍 Facebook</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- =======================================================================
+         4. HERO SECTION (SATURN PLANET MATCHING UPLOADED IMAGE)
+         ======================================================================= -->
+    <section class="hero" data-bg="#2a1208">
+      <div class="w">
+        <!-- Interactive 3D Saturn Planet Stage (Big, Smooth, Interactive Rings, Zigzag Intro) -->
+        <div class="planet-stage">
+          <div id="saturn-3d-model" class="planet-3d-model intro-zigzag" role="img" aria-label="Interactive Glowing Saturn Planet">
+            <svg id="saturn-svg" class="saturn-svg" viewBox="0 0 500 500">
+              <defs>
+                <!-- Deep Rich Red-Orange Planet Body Gradient (Matching Image 2) -->
+                <radialGradient id="saturn-body-grad" cx="40%" cy="36%" r="75%">
+                  <stop offset="0%" stop-color="#ff4a0a" />
+                  <stop offset="28%" stop-color="#e83404" />
+                  <stop offset="65%" stop-color="#b81c00" />
+                  <stop offset="88%" stop-color="#730a00" />
+                  <stop offset="100%" stop-color="#3d0300" />
+                </radialGradient>
+
+                <!-- Soft Glossy Specular Highlight (The Signature Reflection in Image 2) -->
+                <radialGradient id="saturn-gloss-grad" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stop-color="#ffffff" stop-opacity="1" />
+                  <stop offset="26%" stop-color="#fff5ce" stop-opacity="0.9" />
+                  <stop offset="55%" stop-color="#ff8d26" stop-opacity="0.45" />
+                  <stop offset="85%" stop-color="#e83804" stop-opacity="0.1" />
+                  <stop offset="100%" stop-color="#e83804" stop-opacity="0" />
+                </radialGradient>
+
+                <!-- Soft Atmosphere Outer Halo -->
+                <radialGradient id="saturn-halo-grad" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stop-color="#ff5a10" stop-opacity="0.5" />
+                  <stop offset="70%" stop-color="#e83804" stop-opacity="0.15" />
+                  <stop offset="100%" stop-color="#e83804" stop-opacity="0" />
+                </radialGradient>
+
+                <!-- Glowing Ring Disc Linear Gradient -->
+                <linearGradient id="ring-glow-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stop-color="#ff7a18" stop-opacity="0.05" />
+                  <stop offset="25%" stop-color="#ff9b3d" stop-opacity="0.85" />
+                  <stop offset="50%" stop-color="#ffd599" stop-opacity="1" />
+                  <stop offset="75%" stop-color="#ff9b3d" stop-opacity="0.85" />
+                  <stop offset="100%" stop-color="#ff7a18" stop-opacity="0.05" />
+                </linearGradient>
+
+                <!-- Translucent Ring Body Gradient -->
+                <linearGradient id="ring-body-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stop-color="#ff5a10" stop-opacity="0" />
+                  <stop offset="30%" stop-color="#ff882e" stop-opacity="0.38" />
+                  <stop offset="50%" stop-color="#ffba66" stop-opacity="0.48" />
+                  <stop offset="70%" stop-color="#ff882e" stop-opacity="0.38" />
+                  <stop offset="100%" stop-color="#ff5a10" stop-opacity="0" />
+                </linearGradient>
+
+                <!-- Front Half Occlusion ClipPath (cuts upper half so lower half renders in front) -->
+                <clipPath id="saturn-front-clip">
+                  <rect x="0" y="248" width="500" height="252" />
+                </clipPath>
+
+                <!-- Soft Blur Filter for the Glossy Highlight -->
+                <filter id="gloss-blur" x="-20%" y="-20%" width="140%" height="140%">
+                  <feGaussianBlur stdDeviation="3.5" />
+                </filter>
+              </defs>
+
+              <!-- Space Atmosphere Glow -->
+              <circle cx="250" cy="250" r="215" fill="url(#saturn-halo-grad)" />
+
+              <!-- BACK RING (Renders behind the sphere, tilted at ~13 degrees) -->
+              <g id="saturn-ring-back" class="saturn-ring-group" transform="rotate(-13 250 250)">
+                <!-- Outer Translucent Ring Belt -->
+                <ellipse cx="250" cy="250" rx="230" ry="46" fill="url(#ring-body-grad)" opacity="0.65" />
+                <!-- Glowing Core Ring -->
+                <ellipse cx="250" cy="250" rx="226" ry="42" fill="none" stroke="url(#ring-glow-grad)" stroke-width="4.5" opacity="0.85" />
+                <!-- Thin Inner Ring Edge -->
+                <ellipse cx="250" cy="250" rx="212" ry="36" fill="none" stroke="url(#ring-glow-grad)" stroke-width="1.8" opacity="0.5" />
+              </g>
+
+              <!-- MAIN PLANET SPHERE (Radius 145, rich glossy red-orange) -->
+              <circle cx="250" cy="250" r="145" fill="url(#saturn-body-grad)" />
+
+              <!-- Faint Surface Equatorial Bands -->
+              <path d="M 115 220 Q 250 190 385 228 M 110 265 Q 250 295 390 258" stroke="rgba(255, 255, 255, 0.08)" stroke-width="3" fill="none" />
+
+              <!-- SIGNATURE GLOSSY SPECULAR HIGHLIGHT (Matching Image 2 top-left reflection) -->
+              <ellipse cx="180" cy="185" rx="52" ry="34" transform="rotate(-26 180 185)" fill="url(#saturn-gloss-grad)" filter="url(#gloss-blur)" />
+
+              <!-- Atmospheric Rim Curve -->
+              <path d="M 125 180 A 145 145 0 0 1 230 108" fill="none" stroke="rgba(255, 255, 255, 0.22)" stroke-width="2.5" filter="url(#gloss-blur)" />
+
+              <!-- FRONT RING (Clipped to render in front of the lower half of the sphere) -->
+              <g id="saturn-ring-front" class="saturn-ring-group" clip-path="url(#saturn-front-clip)">
+                <g transform="rotate(-13 250 250)">
+                  <!-- Outer Translucent Ring Belt Front -->
+                  <ellipse cx="250" cy="250" rx="230" ry="46" fill="url(#ring-body-grad)" opacity="0.75" />
+                  <!-- Glowing Front Core Ring (Intense Neon Glow) -->
+                  <ellipse cx="250" cy="250" rx="226" ry="42" fill="none" stroke="url(#ring-glow-grad)" stroke-width="5.5" />
+                  <!-- Thin Inner Ring Edge -->
+                  <ellipse cx="250" cy="250" rx="212" ry="36" fill="none" stroke="url(#ring-glow-grad)" stroke-width="2.2" opacity="0.65" />
+                </g>
+              </g>
+
+              <!-- Orbiting Particle Dot (Simulated Satellite on linear spin) -->
+              <g style="transform-origin: 250px 250px; animation: orbit-speck 14s linear infinite;">
+                <circle cx="250" cy="28" r="4.5" fill="#ffffff" />
+                <circle cx="250" cy="28" r="9" fill="#ffd599" opacity="0.3" />
+              </g>
+
+              <!-- Distant Stars (matching deep cosmic backdrop) -->
+              <circle cx="65" cy="85" r="1.6" fill="#ffffff" opacity="0.8" />
+              <circle cx="435" cy="115" r="1.4" fill="#ffffff" opacity="0.75" />
+              <circle cx="410" cy="410" r="1.8" fill="#ffd0a8" opacity="0.8" />
+              <circle cx="95" cy="390" r="1.5" fill="#ffffff" opacity="0.65" />
+            </svg>
+          </div>
+          <span class="planet-hint" id="planet-hint">✦ Drag to tilt & play with the ring ✦</span>
+        </div>
+
+        <span class="tag">AI-POWERED GROWTH COMPANY</span>
+        <h1>One team for everything your business needs to <span class="grow-grad">grow.</span></h1>
+        <p class="hero-lead">Jagvix brings marketing, AI automation, websites and video together, so every part of your growth works as one system.</p>
+
+        <div class="hero-actions">
+          <a href="#contact" class="btn">Request a Growth Review</a>
+          <a href="#services" class="btn btn-outline">See our services</a>
+        </div>
+
+        <p class="hero-location">📍 Based in Jagdalpur, Bastar, Chhattisgarh · Working with businesses across India</p>
+
+        <!-- Four Stat Cards -->
+        <div class="stats-grid">
+          <div class="stat-card card-hoverable">
+            <b>4</b>
+            <span>Services, one team</span>
+          </div>
+          <div class="stat-card card-hoverable">
+            <b>1 day</b>
+            <span>Reply time</span>
+          </div>
+          <div class="stat-card card-hoverable">
+            <b>Pan-India</b>
+            <span>Clients served</span>
+          </div>
+          <div class="stat-card card-hoverable">
+            <b>Results</b>
+            <span>Enquiries over likes</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         5. WHY JAGVIX (#why, data-bg="#1d130e")
+         ======================================================================= -->
+    <section id="why" data-bg="#1d130e">
+      <div class="w">
+        <span class="tag">WHY JAGVIX</span>
+        <h2>Growth works better as one system</h2>
+        <p class="sub">Most businesses hire one person for ads, another for the website and another for videos. Nobody owns the full result. At Jagvix, one team plans and delivers all of it.</p>
+
+        <div class="grid-3">
+          <div class="card card-hoverable">
+            <span class="num">01</span>
+            <h3>One team</h3>
+            <p>Marketing, technology and creative work sit together. You speak to one team, not five vendors.</p>
+          </div>
+          <div class="card card-hoverable">
+            <span class="num">02</span>
+            <h3>Focus on business results</h3>
+            <p>We plan around enquiries, sales and customers, not likes and views.</p>
+          </div>
+          <div class="card card-hoverable">
+            <span class="num">03</span>
+            <h3>Practical AI</h3>
+            <p>We use AI where it saves you time or wins you customers, and nowhere else.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         6. SERVICES (#services, data-bg="#fff3e8") — BOLD, EMOJI-FREE
+         ======================================================================= -->
+    <section id="services" data-bg="#fff3e8">
+      <div class="w">
+        <span class="tag">SERVICES</span>
+        <h2>What we do for <span class="hl">your business</span></h2>
+        <p class="sub">Eight services under one team. Pick one or combine them. Tap any service to see the details.</p>
+
+        <!-- 8 Collapsible Cards (Emoji-free, bold vector icons, responsive sizing) -->
+        <div class="services-grid">
+          <!-- 1. Google and Meta Ads -->
+          <details name="service-item" class="card-hoverable">
+            <summary>
+              <span class="service-ico" aria-hidden="true">
+                <!-- Precision Target Bullseye SVG -->
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10" />
+                  <circle cx="12" cy="12" r="6" />
+                  <circle cx="12" cy="12" r="2" fill="currentColor" />
+                  <path d="M19 5l-4.5 4.5" />
+                  <path d="M19 5h-4" />
+                  <path d="M19 5v4" />
+                </svg>
+              </span>
+              <span class="service-tx">
+                <h3>Google and Meta Ads</h3>
+                <span class="subline">Paid ads that bring ready buyers</span>
+              </span>
+              <span class="service-arrow">▼</span>
+            </summary>
+            <div class="service-content">
+              <ul>
+                <li>
+                  <span class="bullet-check"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2.5 7.5L5.5 10.5L11.5 3.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" /></svg></span>
+                  <span>Google Search and Display ads</span>
+                </li>
+                <li>
+                  <span class="bullet-check"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2.5 7.5L5.5 10.5L11.5 3.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" /></svg></span>
+                  <span>Facebook and Instagram ads</span>
+                </li>
+                <li>
+                  <span class="bullet-check"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2.5 7.5L5.5 10.5L11.5 3.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" /></svg></span>
+                  <span>Lead and sales campaigns</span>
+                </li>
+                <li>
+                  <span class="bullet-check"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2.5 7.5L5.5 10.5L11.5 3.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" /></svg></span>
+                  <span>Monthly plain-language report</span>
+                </li>
+              </ul>
+              <a href="#contact">Talk to us about this →</a>
+            </div>
+          </details>
+
+          <!-- 2. SEO and AI Search -->
+          <details name="service-item" class="card-hoverable">
+            <summary>
+              <span class="service-ico" aria-hidden="true">
+                <!-- Search Radar with AI Sparks SVG -->
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="10.5" cy="10.5" r="7" />
+                  <path d="M15.5 15.5L21 21" />
+                  <path d="M10.5 7v2" />
+                  <path d="M10.5 12v2" />
+                  <path d="M7 10.5h2" />
+                  <path d="M12 10.5h2" />
+                  <circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" />
+                </svg>
+              </span>
+              <span class="service-tx">
+                <h3>SEO and AI Search</h3>
+                <span class="subline">Get found on Google and AI tools</span>
+              </span>
+              <span class="service-arrow">▼</span>
+            </summary>
+            <div class="service-content">
+              <ul>
+                <li>
+                  <span class="bullet-check"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2.5 7.5L5.5 10.5L11.5 3.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" /></svg></span>
+                  <span>Local and website SEO</span>
+                </li>
+                <li>
+                  <span class="bullet-check"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2.5 7.5L5.5 10.5L11.5 3.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" /></svg></span>
+                  <span>Google Business Profile</span>
+                </li>
+                <li>
+                  <span class="bullet-check"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2.5 7.5L5.5 10.5L11.5 3.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" /></svg></span>
+                  <span>AI search visibility (GEO)</span>
+                </li>
+                <li>
+                  <span class="bullet-check"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2.5 7.5L5.5 10.5L11.5 3.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" /></svg></span>
+                  <span>Keyword and content plan</span>
+                </li>
+              </ul>
+              <a href="#contact">Talk to us about this →</a>
+            </div>
+          </details>
+
+          <!-- 3. Web Development -->
+          <details name="service-item" class="card-hoverable">
+            <summary>
+              <span class="service-ico" aria-hidden="true">
+                <!-- Browser & Code Brackets SVG -->
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="3" width="20" height="15" rx="3" />
+                  <path d="M2 8h20" />
+                  <circle cx="5.5" cy="5.5" r="0.8" fill="currentColor" />
+                  <circle cx="8" cy="5.5" r="0.8" fill="currentColor" />
+                  <path d="M8 12l-2 2 2 2" />
+                  <path d="M16 12l2 2-2 2" />
+                  <path d="M13 11.5l-2 5" />
+                  <path d="M8 21h8" />
+                </svg>
+              </span>
+              <span class="service-tx">
+                <h3>Web Development</h3>
+                <span class="subline">Fast websites that turn visitors into enquiries</span>
+              </span>
+              <span class="service-arrow">▼</span>
+            </summary>
+            <div class="service-content">
+              <ul>
+                <li>
+                  <span class="bullet-check"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2.5 7.5L5.5 10.5L11.5 3.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" /></svg></span>
+                  <span>Business and landing pages</span>
+                </li>
+                <li>
+                  <span class="bullet-check"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2.5 7.5L5.5 10.5L11.5 3.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" /></svg></span>
+                  <span>Online stores</span>
+                </li>
+                <li>
+                  <span class="bullet-check"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2.5 7.5L5.5 10.5L11.5 3.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" /></svg></span>
+                  <span>Mobile-first design</span>
+                </li>
+                <li>
+                  <span class="bullet-check"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2.5 7.5L5.5 10.5L11.5 3.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" /></svg></span>
+                  <span>Speed and security</span>
+                </li>
+              </ul>
+              <a href="#contact">Talk to us about this →</a>
+            </div>
+          </details>
+
+          <!-- 4. Business Automation -->
+          <details name="service-item" class="card-hoverable">
+            <summary>
+              <span class="service-ico" aria-hidden="true">
+                <!-- Precision Interlocking Gears SVG -->
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="8" cy="8" r="3.5" />
+                  <path d="M8 2v2.5M8 11.5V14M2 8h2.5M11.5 8H14" />
+                  <circle cx="16" cy="16" r="3.5" />
+                  <path d="M16 10v2.5M16 19.5V22M10 16h2.5M19.5 16H22" />
+                  <path d="M11 11l2 2" />
+                </svg>
+              </span>
+              <span class="service-tx">
+                <h3>Business Automation</h3>
+                <span class="subline">Save time, never miss a lead</span>
+              </span>
+              <span class="service-arrow">▼</span>
+            </summary>
+            <div class="service-content">
+              <ul>
+                <li>
+                  <span class="bullet-check"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2.5 7.5L5.5 10.5L11.5 3.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" /></svg></span>
+                  <span>Automatic follow-ups and reminders</span>
+                </li>
+                <li>
+                  <span class="bullet-check"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2.5 7.5L5.5 10.5L11.5 3.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" /></svg></span>
+                  <span>Lead capture and CRM setup</span>
+                </li>
+                <li>
+                  <span class="bullet-check"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2.5 7.5L5.5 10.5L11.5 3.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" /></svg></span>
+                  <span>WhatsApp and email workflows</span>
+                </li>
+                <li>
+                  <span class="bullet-check"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2.5 7.5L5.5 10.5L11.5 3.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" /></svg></span>
+                  <span>Connected to your tools</span>
+                </li>
+              </ul>
+              <a href="#contact">Talk to us about this →</a>
+            </div>
+          </details>
+
+          <!-- 5. AI Chatbots and Tools -->
+          <details name="service-item" class="card-hoverable">
+            <summary>
+              <span class="service-ico" aria-hidden="true">
+                <!-- Cognitive AI Assistant Chip SVG -->
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="6" width="18" height="14" rx="4" />
+                  <circle cx="9" cy="12" r="1.8" fill="currentColor" />
+                  <circle cx="15" cy="12" r="1.8" fill="currentColor" />
+                  <path d="M9 16c1.5 1 4.5 1 6 0" />
+                  <path d="M12 2v4" />
+                  <circle cx="12" cy="2" r="1.5" fill="currentColor" />
+                  <path d="M1 12h2" />
+                  <path d="M21 12h2" />
+                </svg>
+              </span>
+              <span class="service-tx">
+                <h3>AI Chatbots and Tools</h3>
+                <span class="subline">Answer customers 24/7</span>
+              </span>
+              <span class="service-arrow">▼</span>
+            </summary>
+            <div class="service-content">
+              <ul>
+                <li>
+                  <span class="bullet-check"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2.5 7.5L5.5 10.5L11.5 3.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" /></svg></span>
+                  <span>Website and WhatsApp chatbots</span>
+                </li>
+                <li>
+                  <span class="bullet-check"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2.5 7.5L5.5 10.5L11.5 3.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" /></svg></span>
+                  <span>AI tools for daily tasks</span>
+                </li>
+                <li>
+                  <span class="bullet-check"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2.5 7.5L5.5 10.5L11.5 3.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" /></svg></span>
+                  <span>Staff training and handover</span>
+                </li>
+                <li>
+                  <span class="bullet-check"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2.5 7.5L5.5 10.5L11.5 3.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" /></svg></span>
+                  <span>Support after launch</span>
+                </li>
+              </ul>
+              <a href="#contact">Talk to us about this →</a>
+            </div>
+          </details>
+
+          <!-- 6. Video Production -->
+          <details name="service-item" class="card-hoverable">
+            <summary>
+              <span class="service-ico" aria-hidden="true">
+                <!-- Cinema Production Clapper & Play SVG -->
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="4" width="20" height="16" rx="3" />
+                  <path d="M2 9h20" />
+                  <path d="M6 4l2 5M12 4l2 5M18 4l2 5" />
+                  <polygon points="10 12 15 14.5 10 17 10 12" fill="currentColor" stroke="none" />
+                </svg>
+              </span>
+              <span class="service-tx">
+                <h3>Video Production</h3>
+                <span class="subline">Videos that build trust</span>
+              </span>
+              <span class="service-arrow">▼</span>
+            </summary>
+            <div class="service-content">
+              <ul>
+                <li>
+                  <span class="bullet-check"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2.5 7.5L5.5 10.5L11.5 3.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" /></svg></span>
+                  <span>Brand and product films</span>
+                </li>
+                <li>
+                  <span class="bullet-check"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2.5 7.5L5.5 10.5L11.5 3.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" /></svg></span>
+                  <span>Reels and ads</span>
+                </li>
+                <li>
+                  <span class="bullet-check"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2.5 7.5L5.5 10.5L11.5 3.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" /></svg></span>
+                  <span>Editing and motion graphics</span>
+                </li>
+                <li>
+                  <span class="bullet-check"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2.5 7.5L5.5 10.5L11.5 3.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" /></svg></span>
+                  <span>Project walkthroughs</span>
+                </li>
+              </ul>
+              <a href="#contact">Talk to us about this →</a>
+            </div>
+          </details>
+
+          <!-- 7. Social Media and Branding -->
+          <details name="service-item" class="card-hoverable">
+            <summary>
+              <span class="service-ico" aria-hidden="true">
+                <!-- Brand Identity Network Graph SVG -->
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="18" cy="5" r="3" />
+                  <circle cx="6" cy="12" r="3" />
+                  <circle cx="18" cy="19" r="3" />
+                  <path d="M8.6 10.7l6.8-4.4" />
+                  <path d="M8.6 13.3l6.8 4.4" />
+                </svg>
+              </span>
+              <span class="service-tx">
+                <h3>Social Media and Branding</h3>
+                <span class="subline">Look like the best choice</span>
+              </span>
+              <span class="service-arrow">▼</span>
+            </summary>
+            <div class="service-content">
+              <ul>
+                <li>
+                  <span class="bullet-check"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2.5 7.5L5.5 10.5L11.5 3.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" /></svg></span>
+                  <span>Content calendar and posting</span>
+                </li>
+                <li>
+                  <span class="bullet-check"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2.5 7.5L5.5 10.5L11.5 3.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" /></svg></span>
+                  <span>Account handling</span>
+                </li>
+                <li>
+                  <span class="bullet-check"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2.5 7.5L5.5 10.5L11.5 3.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" /></svg></span>
+                  <span>Logo, colours and brand look</span>
+                </li>
+                <li>
+                  <span class="bullet-check"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2.5 7.5L5.5 10.5L11.5 3.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" /></svg></span>
+                  <span>Brand messaging</span>
+                </li>
+              </ul>
+              <a href="#contact">Talk to us about this →</a>
+            </div>
+          </details>
+
+          <!-- 8. Business Review -->
+          <details name="service-item" class="card-hoverable">
+            <summary>
+              <span class="service-ico" aria-hidden="true">
+                <!-- Analytics Growth Chart & Trend Arrow SVG -->
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M3 3v18h18" />
+                  <path d="M7 16v-3" />
+                  <path d="M12 16V9" />
+                  <path d="M17 16V5" />
+                  <path d="M7 11l5-5 5 2 4-4" />
+                  <path d="M17 4h4v4" />
+                </svg>
+              </span>
+              <span class="service-tx">
+                <h3>Business Review</h3>
+                <span class="subline">Find where growth is being lost</span>
+              </span>
+              <span class="service-arrow">▼</span>
+            </summary>
+            <div class="service-content">
+              <ul>
+                <li>
+                  <span class="bullet-check"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2.5 7.5L5.5 10.5L11.5 3.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" /></svg></span>
+                  <span>Review of marketing, website and follow-up</span>
+                </li>
+                <li>
+                  <span class="bullet-check"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2.5 7.5L5.5 10.5L11.5 3.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" /></svg></span>
+                  <span>List of gaps and quick wins</span>
+                </li>
+                <li>
+                  <span class="bullet-check"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2.5 7.5L5.5 10.5L11.5 3.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" /></svg></span>
+                  <span>Written growth plan</span>
+                </li>
+                <li>
+                  <span class="bullet-check"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2.5 7.5L5.5 10.5L11.5 3.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" /></svg></span>
+                  <span>Use it with us or without us</span>
+                </li>
+              </ul>
+              <a href="#contact">Talk to us about this →</a>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         7. HOW WE WORK (#process, data-bg="#d9631a")
+         ======================================================================= -->
+    <section id="process" data-bg="#d9631a">
+      <div class="w">
+        <span class="tag">HOW WE WORK</span>
+        <h2>How a project runs</h2>
+        <p class="sub">Four clear steps from first call to steady growth.</p>
+
+        <div class="steps-grid">
+          <div class="step-card card-hoverable">
+            <div class="step-num">1</div>
+            <h3>Discover</h3>
+            <p>We learn about your business, your customers and your goals. You tell us what is working and what is not.</p>
+          </div>
+          <div class="step-card card-hoverable">
+            <div class="step-num">2</div>
+            <h3>Plan</h3>
+            <p>We turn what we learn into a clear plan with priorities.</p>
+          </div>
+          <div class="step-card card-hoverable">
+            <div class="step-num">3</div>
+            <h3>Build</h3>
+            <p>We create the campaigns, systems, websites and content.</p>
+          </div>
+          <div class="step-card card-hoverable">
+            <div class="step-num">4</div>
+            <h3>Grow</h3>
+            <p>We track results, report simply and improve every month.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         8. OUR WORK (#work, data-bg="#160d09")
+         ======================================================================= -->
+    <section id="work" data-bg="#160d09">
+      <!-- Part A — Trusted by -->
+      <div class="w">
+        <span class="tag">TRUSTED BY</span>
+        <h2>Brands we have worked with ✅</h2>
+      </div>
+
+      <div class="marquee-wrapper" aria-label="Brands carousel">
+        <div class="marquee-track" data-marquee="true">
+          <span class="client-card">DECATHLON</span>
+          <span class="client-card">MOHOTSAV</span>
+          <span class="client-card">PW VIDYAPEETH</span>
+          <span class="client-card">🏗 Construction</span>
+          <span class="client-card">🏙 Real Estate</span>
+        </div>
+      </div>
+
+      <!-- Part B — Our videos -->
+      <div class="w">
+        <span class="tag">OUR WORK</span>
+        <h2>Our videos and campaigns 🎬</h2>
+        <p class="sub">Videos slide across the screen. Tap any video to talk to us.</p>
+      </div>
+
+      <div class="marquee-wrapper" aria-label="Videos carousel">
+        <div class="marquee-track slow" data-marquee="true">
+          <a href="#contact" class="video-card" style="background: linear-gradient(160deg, #3b1b0c, #ff5a10);">
+            <span class="vid-emoji">🏗</span>
+            <span class="vid-play-btn" aria-hidden="true">▶</span>
+            <b>Construction</b>
+            <small>Project films</small>
+          </a>
+          <a href="#contact" class="video-card" style="background: linear-gradient(160deg, #10243b, #2f7bd9);">
+            <span class="vid-emoji">🏙</span>
+            <span class="vid-play-btn" aria-hidden="true">▶</span>
+            <b>Real Estate</b>
+            <small>Property videos</small>
+          </a>
+          <a href="#contact" class="video-card" style="background: linear-gradient(160deg, #2b1040, #d9366f);">
+            <span class="vid-emoji">🛍</span>
+            <span class="vid-play-btn" aria-hidden="true">▶</span>
+            <b>Retail</b>
+            <small>Product ads</small>
+          </a>
+          <a href="#contact" class="video-card" style="background: linear-gradient(160deg, #0f3322, #2fb36a);">
+            <span class="vid-emoji">🏥</span>
+            <span class="vid-play-btn" aria-hidden="true">▶</span>
+            <b>Healthcare</b>
+            <small>Clinic reels</small>
+          </a>
+          <a href="#contact" class="video-card" style="background: linear-gradient(160deg, #3b2a0c, #f2b21c);">
+            <span class="vid-emoji">🎓</span>
+            <span class="vid-play-btn" aria-hidden="true">▶</span>
+            <b>Education</b>
+            <small>Course promos</small>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         9. FAQ (#faq, data-bg="#fff3e8")
+         ======================================================================= -->
+    <section id="faq" data-bg="#fff3e8">
+      <div class="w">
+        <span class="tag">FAQ</span>
+        <h2>Common questions</h2>
+        <p class="sub">Clear answers to help you decide.</p>
+
+        <div class="faq-list">
+          <details class="faq-item card-hoverable">
+            <summary>What does Jagvix do?</summary>
+            <p>We are an AI-powered growth company. We combine marketing, AI automation, websites and video so your growth works as one system.</p>
+          </details>
+
+          <details class="faq-item card-hoverable">
+            <summary>Where is Jagvix based?</summary>
+            <p>Jagdalpur, Bastar, Chhattisgarh, India. We work with businesses across India.</p>
+          </details>
+
+          <details class="faq-item card-hoverable">
+            <summary>Can I choose only one service?</summary>
+            <p>Yes. Choose one service or all four.</p>
+          </details>
+
+          <details class="faq-item card-hoverable">
+            <summary>How do I get started?</summary>
+            <p>Fill in the contact form below or message us on WhatsApp. We reply within one business day.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         10. CONTACT (#contact, data-bg="#160d09") — FIXED SOLID DARK
+         ======================================================================= -->
+    <section id="contact" data-bg="#160d09">
+      <div class="w">
+        <span class="tag">CONTACT JAGVIX</span>
+        <h2>Tell us about your business</h2>
+        <p class="sub">Share a few details. We will reply on WhatsApp.</p>
+
+        <div class="contact-layout">
+          <!-- Form Card (Fixed Solid Dark #1f130d) -->
+          <form id="contact-form" class="contact-form-card" novalidate>
+            <div class="form-group">
+              <label for="form-name">Your name *</label>
+              <input id="form-name" class="form-input" type="text" required placeholder="Your full name" autocomplete="name" maxlength="100">
+            </div>
+
+            <div class="form-group">
+              <label for="form-phone">WhatsApp number *</label>
+              <div class="phone-row">
+                <select id="form-country" class="form-select" aria-label="Country Code">
+                  <option value="+91">+91 (IN)</option>
+                </select>
+                <input id="form-phone" class="form-input" type="tel" inputmode="tel" required placeholder="98765 43210" autocomplete="tel" maxlength="20">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="form-biz">Business name and type *</label>
+              <input id="form-biz" class="form-input" type="text" required placeholder="e.g. Apex Health Clinic (Healthcare)" maxlength="120">
+            </div>
+
+            <div class="form-group">
+              <label>What do you need?</label>
+              <div class="chips-group">
+                <label>
+                  <input type="checkbox" name="needs" value="More enquiries">
+                  <span>More enquiries</span>
+                </label>
+                <label>
+                  <input type="checkbox" name="needs" value="Faster follow-up">
+                  <span>Faster follow-up</span>
+                </label>
+                <label>
+                  <input type="checkbox" name="needs" value="A better website">
+                  <span>A better website</span>
+                </label>
+                <label>
+                  <input type="checkbox" name="needs" value="Video and social media">
+                  <span>Video and social media</span>
+                </label>
+                <label>
+                  <input type="checkbox" name="needs" value="Full growth support">
+                  <span>Full growth support</span>
+                </label>
+              </div>
+            </div>
+
+            <label class="checkbox-agree">
+              <input id="form-consent" type="checkbox" required>
+              <span>I agree to receive a reply on WhatsApp or phone regarding this enquiry.</span>
+            </label>
+
+            <button type="submit" class="btn" style="width: 100%; margin-top: 6px;">Send enquiry</button>
+
+            <div class="form-note">Your details are used only to reply to your enquiry. We do not sell them.</div>
+          </form>
+
+          <!-- Social Cards (Fixed Solid Dark #1f130d) -->
+          <div class="social-stack">
+            <!-- WhatsApp -->
+            <a href="https://wa.me/919876543210" target="_blank" rel="noopener noreferrer" class="social-card">
+              <span class="soc-icon" style="background: #25d366;">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm5.2 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.2-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8s.7-2 1-2.2c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.3 0 .5l-.4.5c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.1 1 2.1 1.3 2.4 1.4.3.1.5.1.6-.1l.9-1.1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.8-.1 1.4z" />
+                </svg>
+              </span>
+              <span>WhatsApp</span>
+              <span class="soc-cta">Chat now</span>
+            </a>
+
+            <!-- Instagram -->
+            <a href="https://instagram.com/jagvix" target="_blank" rel="noopener noreferrer" class="social-card">
+              <span class="soc-icon" style="background: linear-gradient(45deg, #f9a03f, #e1306c, #833ab4);">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3.5A4.5 4.5 0 1 1 7.5 12 4.5 4.5 0 0 1 12 7.5zm0 2A2.5 2.5 0 1 0 14.5 12 2.5 2.5 0 0 0 12 9.5zm5.3-3.7a1.1 1.1 0 1 1-1.1 1.1 1.1 1.1 0 0 1 1.1-1.1z" />
+                </svg>
+              </span>
+              <span>Instagram</span>
+            </a>
+
+            <!-- LinkedIn -->
+            <a href="https://linkedin.com/company/jagvix" target="_blank" rel="noopener noreferrer" class="social-card">
+              <span class="soc-icon" style="background: #0a66c2;">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M4.5 8.5h3.8V21H4.5zM6.4 2.6a2.2 2.2 0 1 1 0 4.4 2.2 2.2 0 0 1 0-4.4zM10.5 8.5h3.6v1.7c.5-1 1.8-2 3.7-2 3.9 0 4.6 2.5 4.6 5.8V21h-3.8v-6.3c0-1.5 0-3.4-2.1-3.4s-2.4 1.6-2.4 3.3V21h-3.8z" />
+                </svg>
+              </span>
+              <span>LinkedIn</span>
+            </a>
+
+            <!-- Facebook -->
+            <a href="https://facebook.com/jagvix" target="_blank" rel="noopener noreferrer" class="social-card">
+              <span class="soc-icon" style="background: #1877f2;">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M14 8.5V6.8c0-.8.2-1.2 1.4-1.2H17V2.2C16.7 2.1 15.7 2 14.6 2 12.1 2 10.4 3.5 10.4 6.3v2.2H7.5V12h2.9v10H14V12h2.7l.4-3.5z" />
+                </svg>
+              </span>
+              <span>Facebook</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- =========================================================================
+       11. FOOTER
+       ========================================================================= -->
+  <footer>
+    <div class="w">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <a href="#top" class="logo" style="margin-bottom: 12px; display: inline-flex;">
+            <!-- Official Jagvix logo icon SVG -->
+            <svg class="jv-logo-svg" viewBox="0 0 100 80" aria-hidden="true">
+              <use href="#jv-logo-symbol" />
+              <!-- Direct inline fallback in case <use> cross-scoping -->
+              <path d="M 36,27 C 22,31 9,41 3,51 C 15,54 30,52 41,45 C 31,43 19,37 16,33 C 21,29 28,27 36,27 Z" fill="url(#jv-logo-grad)" />
+              <path d="M 64,53 C 78,49 91,39 97,29 C 85,26 70,28 59,35 C 69,37 81,43 84,47 C 79,51 72,53 64,53 Z" fill="url(#jv-logo-grad)" />
+              <g mask="url(#jv-cut-mask)">
+                <circle cx="50" cy="40" r="18" fill="none" stroke="url(#jv-logo-grad)" stroke-width="8.5" />
+              </g>
+            </svg>
+            JAGVIX
+          </a>
+          <p>Jagvix is an AI-powered growth company based in Jagdalpur, Bastar, Chhattisgarh, India.</p>
+        </div>
+
+        <div class="footer-col">
+          <b>NAVIGATION</b>
+          <a href="#top">Home</a>
+          <a href="#work">Work</a>
+          <a href="#services">Services</a>
+          <a href="#process">How we work</a>
+          <a href="#contact">Contact</a>
+        </div>
+
+        <div class="footer-col">
+          <b>LEGAL</b>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">Grievance Officer</a>
+        </div>
+
+        <div class="footer-col">
+          <b>DIRECT CONTACT</b>
+          <p>Reach us through the form above.<br>We reply within one business day.</p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>© 2026 Jagvix. All rights reserved. · Jagdalpur, Bastar, Chhattisgarh</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- =========================================================================
+       12. AI ASSISTANT CHATBOT (Bilingual + 24-hr Auto-delete)
+       ========================================================================= -->
+  <div id="chatbot-container">
+    <!-- Floating Panel (Solid Cream, Never Transparent) -->
+    <div id="chatbot-panel" role="dialog" aria-label="Jagvix Assistant" aria-modal="true">
+      <div class="chat-header">
+        <span>🤖 Jagvix Assistant</span>
+        <button id="chat-close" aria-label="Close assistant">×</button>
+      </div>
+
+      <div id="chat-messages" role="log" aria-live="polite"></div>
+
+      <div id="chat-quick-replies" class="chat-quick-replies" aria-label="Quick questions"></div>
+
+      <div class="chat-input-row">
+        <input id="chat-input" type="text" placeholder="Ask about Jagvix…" autocomplete="off" maxlength="300" aria-label="Ask about Jagvix">
+        <button id="chat-send" type="button">Send</button>
+      </div>
+
+      <div id="chat-footer-note" class="chat-footer-note">
+        Chats are deleted automatically every 24 hours.
+      </div>
+    </div>
+
+    <!-- 64px Orange Floating Circle Button -->
+    <button id="chatbot-fab" aria-label="Open Jagvix AI Assistant" aria-expanded="false" aria-controls="chatbot-panel">
+      <svg viewBox="0 0 36 36" aria-hidden="true">
+        <rect x="7" y="11" width="22" height="17" rx="6" fill="#ffffff" />
+        <circle cx="14" cy="19" r="2.5" fill="#ff5a10" />
+        <circle cx="22" cy="19" r="2.5" fill="#ff5a10" />
+        <path d="M14 24h8" stroke="#ff5a10" stroke-width="2" stroke-linecap="round" />
+        <path d="M18 11V6" stroke="#ffffff" stroke-width="2" />
+        <circle cx="18" cy="5" r="2" fill="#ffffff" />
+      </svg>
+    </button>
+  </div>
+
+  <!-- =========================================================================
+       VANILLA JAVASCRIPT LOGIC
+       ========================================================================= -->
+  <script>
+    /**
+     * JAGVIX PRODUCTION SUITE
+     * Config & Constants
+     */
+    const WHATSAPP_NUMBER = "919876543210";
+    const INSTAGRAM_URL = "https://instagram.com/jagvix";
+    const LINKEDIN_URL = "https://linkedin.com/company/jagvix";
+    const FACEBOOK_URL = "https://facebook.com/jagvix";
+
+    // Security sanitization helper
+    function sanitizeText(str) {
+      if (typeof str !== 'string') return '';
+      return str.replace(/[<>&"']/g, (m) => {
+        switch (m) {
+          case '<': return '&lt;';
+          case '>': return '&gt;';
+          case '&': return '&amp;';
+          case '"': return '&quot;';
+          case "'": return '&#39;';
+          default: return m;
+        }
+      }).trim();
+    }
+
+    /* ==========================================================================
+       2. SCROLL-BASED THEME OBSERVER & PROGRESS BAR
+       ========================================================================== */
+    (function initScrollTheme() {
+      const progressBar = document.getElementById('progress-bar');
+      const root = document.documentElement;
+      const sections = document.querySelectorAll('section[data-bg]');
+
+      // Scroll Progress Bar
+      window.addEventListener('scroll', () => {
+        const h = document.documentElement;
+        const total = h.scrollHeight - h.clientHeight;
+        if (total > 0) {
+          const pct = (h.scrollTop / total) * 100;
+          progressBar.style.width = Math.min(Math.max(pct, 0), 100) + '%';
+        }
+      }, { passive: true });
+
+      // Luminance Helper: 0.299R + 0.587G + 0.114B > 170 => Light
+      function isLight(hex) {
+        hex = hex.replace('#', '');
+        if (hex.length === 3) hex = hex.split('').map(c => c + c).join('');
+        const r = parseInt(hex.substring(0, 2), 16) || 0;
+        const g = parseInt(hex.substring(2, 4), 16) || 0;
+        const b = parseInt(hex.substring(4, 6), 16) || 0;
+        return (0.299 * r + 0.587 * g + 0.114 * b) > 170;
+      }
+
+      function applyTheme(bg) {
+        if (!bg) return;
+        const light = isLight(bg);
+
+        // Transition background color on body
+        document.body.style.backgroundColor = bg;
+        root.style.setProperty('--page-bg', bg);
+
+        if (light) {
+          root.style.setProperty('--tx', '#1d120c');
+          root.style.setProperty('--mut', '#6b5446');
+          root.style.setProperty('--card', '#ffffffcc');
+          root.style.setProperty('--line', '#00000022');
+          root.style.setProperty('--header-bg', '#fff8f3dd');
+          root.style.setProperty('--menu-btn-fg', '#1d120c');
+          root.style.setProperty('--menu-btn-bg', 'rgba(29, 18, 12, 0.08)');
+        } else {
+          root.style.setProperty('--tx', '#fff4ec');
+          root.style.setProperty('--mut', '#f6e0d2');
+          root.style.setProperty('--card', 'rgba(0, 0, 0, 0.22)');
+          root.style.setProperty('--line', 'rgba(255, 255, 255, 0.18)');
+          root.style.setProperty('--header-bg', '#2e170cdd');
+          root.style.setProperty('--menu-btn-fg', '#fff4ec');
+          root.style.setProperty('--menu-btn-bg', 'rgba(255, 255, 255, 0.08)');
+        }
+      }
+
+      // Initial theme on load (Hero section)
+      applyTheme('#2a1208');
+
+      // IntersectionObserver for dynamic theme
+      if ('IntersectionObserver' in window) {
+        const themeObserver = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting && entry.intersectionRatio > 0.35) {
+              const bg = entry.target.getAttribute('data-bg');
+              applyTheme(bg);
+            }
+          });
+        }, {
+          threshold: [0, 0.35, 0.5, 1]
+        });
+
+        sections.forEach(s => themeObserver.observe(s));
+      }
+
+      // Reveal Animations: dynamically add .rv class so content is visible if JS fails
+      const revealTargets = document.querySelectorAll(
+        '.card, .step-card, .stat-card, .faq-item, .services-grid details, h2, .sub, .hero-lead, .hero-location, .hero-actions, .contact-form-card, .social-stack'
+      );
+      revealTargets.forEach(el => el.classList.add('rv'));
+
+      if ('IntersectionObserver' in window) {
+        const revealObserver = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('in');
+              revealObserver.unobserve(entry.target);
+            }
+          });
+        }, {
+          threshold: 0.12
+        });
+
+        revealTargets.forEach(el => revealObserver.observe(el));
+      } else {
+        // Fallback
+        revealTargets.forEach(el => el.classList.add('in'));
+      }
+    })();
+
+    /* ==========================================================================
+       3. MENU & HEADER INTERACTIONS
+       ========================================================================== */
+    (function initMenu() {
+      const menuBtn = document.getElementById('menu-btn');
+      const menuDropdown = document.getElementById('menu-dropdown');
+
+      function toggleMenu(open) {
+        const willOpen = typeof open === 'boolean' ? open : !menuDropdown.classList.contains('open');
+        menuDropdown.classList.toggle('open', willOpen);
+        menuBtn.classList.toggle('open', willOpen);
+        menuBtn.setAttribute('aria-expanded', String(willOpen));
+      }
+
+      menuBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleMenu();
+      });
+
+      menuDropdown.addEventListener('click', (e) => {
+        if (e.target.closest('a')) {
+          toggleMenu(false);
+        }
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!menuDropdown.contains(e.target) && !menuBtn.contains(e.target)) {
+          toggleMenu(false);
+        }
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && menuDropdown.classList.contains('open')) {
+          toggleMenu(false);
+        }
+      });
+    })();
+
+    /* ==========================================================================
+       4. INTERACTIVE SATURN PLANET (ZIGZAG INTRO + 3D RING PLAY)
+       ========================================================================== */
+    (function initInteractiveSaturn() {
+      const planetModel = document.getElementById('saturn-3d-model');
+      if (!planetModel) return;
+
+      // Handle the Zigzag Entrance Animation completion (1.85s)
+      setTimeout(() => {
+        planetModel.classList.remove('intro-zigzag');
+        planetModel.classList.add('idle-float');
+      }, 1900);
+
+      // Interactive 3D Play State
+      let isDragging = false;
+      let startX = 0;
+      let startY = 0;
+      let targetRotX = 0;
+      let targetRotY = 0;
+      let currentRotX = 0;
+      let currentRotY = 0;
+      let ringDragAngle = 0;
+      let targetRingAngle = 0;
+      let currentRingAngle = 0;
+      let animFrameId = null;
+
+      const ringBack = document.getElementById('saturn-ring-back');
+      const ringFront = document.getElementById('saturn-ring-front');
+      const hint = document.getElementById('planet-hint');
+
+      function update3DTransform() {
+        // Smooth interpolation (lerp)
+        currentRotX += (targetRotX - currentRotX) * 0.08;
+        currentRotY += (targetRotY - currentRotY) * 0.08;
+        currentRingAngle += (targetRingAngle - currentRingAngle) * 0.1;
+
+        if (planetModel) {
+          planetModel.style.transform = `perspective(1000px) rotateX(${currentRotX}deg) rotateY(${currentRotY}deg)`;
+        }
+
+        // Dynamically tilt the rings as user plays with them
+        const baseRingTilt = -13 + currentRingAngle;
+        if (ringBack) ringBack.setAttribute('transform', `rotate(${baseRingTilt} 250 250)`);
+        if (ringFront && ringFront.firstElementChild) {
+          ringFront.firstElementChild.setAttribute('transform', `rotate(${baseRingTilt} 250 250)`);
+        }
+
+        animFrameId = requestAnimationFrame(update3DTransform);
+      }
+
+      // Start the render loop
+      animFrameId = requestAnimationFrame(update3DTransform);
+
+      // Pointer tracking over Hero
+      const heroSection = document.querySelector('.hero');
+      if (heroSection) {
+        heroSection.addEventListener('pointermove', (e) => {
+          if (isDragging) return;
+          const rect = planetModel.getBoundingClientRect();
+          const centerX = rect.left + rect.width / 2;
+          const centerY = rect.top + rect.height / 2;
+
+          const dx = (e.clientX - centerX) / (window.innerWidth / 2);
+          const dy = (e.clientY - centerY) / (window.innerHeight / 2);
+
+          targetRotY = Math.max(Math.min(dx * 22, 28), -28);
+          targetRotX = Math.max(Math.min(-dy * 18, 22), -22);
+          targetRingAngle = dx * 14;
+        }, { passive: true });
+
+        heroSection.addEventListener('pointerleave', () => {
+          if (!isDragging) {
+            targetRotX = 0;
+            targetRotY = 0;
+            targetRingAngle = 0;
+          }
+        });
+      }
+
+      // Direct Drag / Touch to Play With Ring
+      planetModel.addEventListener('pointerdown', (e) => {
+        isDragging = true;
+        startX = e.clientX;
+        startY = e.clientY;
+        planetModel.classList.remove('idle-float');
+        if (hint) hint.style.opacity = '0.3';
+        planetModel.setPointerCapture(e.pointerId);
+      });
+
+      planetModel.addEventListener('pointermove', (e) => {
+        if (!isDragging) return;
+        const deltaX = e.clientX - startX;
+        const deltaY = e.clientY - startY;
+
+        targetRotY = Math.max(Math.min(deltaX * 0.28, 45), -45);
+        targetRotX = Math.max(Math.min(-deltaY * 0.24, 38), -38);
+        targetRingAngle = deltaX * 0.35;
+      });
+
+      function stopDrag(e) {
+        if (!isDragging) return;
+        isDragging = false;
+        try { planetModel.releasePointerCapture(e.pointerId); } catch (_) {}
+        if (hint) hint.style.opacity = '0.7';
+
+        // Return smoothly to idle floating
+        targetRotX = 0;
+        targetRotY = 0;
+        targetRingAngle = 0;
+        setTimeout(() => {
+          if (!isDragging) planetModel.classList.add('idle-float');
+        }, 600);
+      }
+
+      planetModel.addEventListener('pointerup', stopDrag);
+      planetModel.addEventListener('pointercancel', stopDrag);
+    })();
+
+    /* ==========================================================================
+       6. SERVICES ACCORDION (Open one at a time)
+       ========================================================================== */
+    (function initServicesAccordion() {
+      const serviceCards = document.querySelectorAll('.services-grid details');
+      serviceCards.forEach((card) => {
+        card.addEventListener('toggle', () => {
+          if (card.open) {
+            serviceCards.forEach((other) => {
+              if (other !== card && other.open) {
+                other.open = false;
+              }
+            });
+          }
+        });
+      });
+    })();
+
+    /* ==========================================================================
+       8. MARQUEE DUPLICATION & TOUCH PAUSE
+       ========================================================================== */
+    (function initMarquees() {
+      const marquees = document.querySelectorAll('[data-marquee="true"]');
+      marquees.forEach((m) => {
+        // Duplicate children seamlessly for 50% loop
+        m.innerHTML += m.innerHTML;
+
+        // Touch hold support to pause
+        m.addEventListener('touchstart', () => m.classList.add('paused'), { passive: true });
+        m.addEventListener('touchend', () => m.classList.remove('paused'), { passive: true });
+        m.addEventListener('touchcancel', () => m.classList.remove('paused'), { passive: true });
+      });
+    })();
+
+    /* ==========================================================================
+       10. CONTACT FORM SUBMISSION TO WHATSAPP (WITH SANITIZATION & SECURITY)
+       ========================================================================== */
+    (function initContactForm() {
+      const form = document.getElementById('contact-form');
+      const nameInput = document.getElementById('form-name');
+      const phoneInput = document.getElementById('form-phone');
+      const countrySelect = document.getElementById('form-country');
+      const bizInput = document.getElementById('form-biz');
+      const consentInput = document.getElementById('form-consent');
+
+      // Rate limit submit
+      let lastSubmitTime = 0;
+
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const now = Date.now();
+        if (now - lastSubmitTime < 2000) return; // Prevent spam
+        lastSubmitTime = now;
+
+        const name = sanitizeText(nameInput.value);
+        const phone = sanitizeText(phoneInput.value);
+        const biz = sanitizeText(bizInput.value);
+
+        if (!name || !phone || !biz) {
+          alert('Please fill in all required fields.');
+          return;
+        }
+
+        if (!consentInput.checked) {
+          alert('Please agree to receive a reply on WhatsApp or phone.');
+          return;
+        }
+
+        // Collect checked chips
+        const checkedChips = Array.from(document.querySelectorAll('input[name="needs"]:checked'))
+          .map(cb => sanitizeText(cb.value));
+        const needsText = checkedChips.length > 0 ? checkedChips.join(', ') : 'Not specified';
+
+        // Clean phone number: remove non-digits
+        const cleanPhone = phone.replace(/[^0-9]/g, '');
+        if (cleanPhone.length < 7) {
+          alert('Please enter a valid phone number.');
+          return;
+        }
+
+        const countryCode = countrySelect.value || '+91';
+        const fullUserPhone = `${countryCode} ${cleanPhone}`;
+
+        // Construct pre-filled WhatsApp message
+        const message = `Hi Jagvix, I am ${name}. Business: ${biz}. Need: ${needsText}. My WhatsApp: ${fullUserPhone}`;
+
+        const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+
+        // Open WhatsApp in safe new window
+        window.open(waUrl, '_blank', 'noopener,noreferrer');
+      });
+    })();
+
+    /* ==========================================================================
+       12. AI ASSISTANT CHATBOT (Bilingual + 24-hr Auto-delete)
+       ========================================================================== */
+    (function initChatbot() {
+      const fab = document.getElementById('chatbot-fab');
+      const panel = document.getElementById('chatbot-panel');
+      const closeBtn = document.getElementById('chat-close');
+      const msgsContainer = document.getElementById('chat-messages');
+      const quickRepliesContainer = document.getElementById('chat-quick-replies');
+      const chatInput = document.getElementById('chat-input');
+      const chatSendBtn = document.getElementById('chat-send');
+      const footerNote = document.getElementById('chat-footer-note');
+
+      const STORAGE_KEY = 'jagvix_chat_v1';
+      const TWENTY_FOUR_HOURS = 24 * 60 * 60 * 1000;
+
+      // Knowledge Base in EXACT SPEC ORDER
+      const KNOWLEDGE_BASE = [
+        {
+          id: 'greeting',
+          keywords: /\b(hi|hello|hey|greetings|namaste|pranam|ram ram|kese ho|kaise ho)\b|^(hi|hello|hey)$/i,
+          en: "Hello! 👋 I can tell you about Jagvix, our services, process and how to contact us.",
+          hi: "नमस्ते! 👋 मैं आपको Jagvix, हमारी सेवाओं, काम करने के तरीके और संपर्क के बारे में बता सकता हूँ।"
+        },
+        {
+          id: 'about',
+          keywords: /\b(about|who are you|what is jagvix|what do you do|company|jagvix|growth company)\b/i,
+          en: "Jagvix is an AI-powered growth company. We bring marketing, AI automation, websites and video together so every part of your growth works as one system.",
+          hi: "Jagvix एक AI-पावर्ड ग्रोथ कंपनी है। हम मार्केटिंग, AI ऑटोमेशन, वेबसाइट और वीडियो को एक साथ जोड़ते हैं ताकि आपकी ग्रोथ एक सिस्टम की तरह काम करे।"
+        },
+        {
+          id: 'location',
+          keywords: /\b(location|where|address|based|city|jagdalpur|bastar|chhattisgarh|office|kahan|sthan|pata)\b/i,
+          en: "We are based in Jagdalpur, Bastar, Chhattisgarh, India, and work with businesses across India.",
+          hi: "हम जगदलपुर, बस्तर, छत्तीसगढ़ में हैं और पूरे भारत के बिज़नेस के साथ काम करते हैं।"
+        },
+        {
+          id: 'services_overview',
+          keywords: /\b(services|all services|offer|provide|options|kya karte ho|seva|sevaen)\b/i,
+          en: "We offer 8 services: Google and Meta Ads, SEO and AI Search, Web Development, Business Automation, AI Chatbots and Tools, Video Production, Social Media and Branding, and Business Review. Choose one or combine them.",
+          hi: "हमारी 8 सेवाएँ हैं: Google और Meta Ads, SEO और AI Search, वेब डेवलपमेंट, बिज़नेस ऑटोमेशन, AI चैटबॉट और टूल्स, वीडियो प्रोडक्शन, सोशल मीडिया और ब्रांडिंग, और बिज़नेस रिव्यू। एक चुनें या सब मिलाएँ।"
+        },
+        {
+          id: 'ads',
+          keywords: /\b(ads|google ads|meta ads|facebook ads|instagram ads|paid ads|ad campaigns|ad|vigyapan)\b/i,
+          en: "Ads: Google Search and Display ads, Facebook and Instagram ads, lead and sales campaigns, and a simple monthly report.",
+          hi: "विज्ञापन: Google Search और Display ads, Facebook और Instagram ads, लीड और सेल्स कैंपेन, और आसान मासिक रिपोर्ट।"
+        },
+        {
+          id: 'seo',
+          keywords: /\b(seo|ai search|geo|search ranking|google business profile|gmb|keyword)\b/i,
+          en: "SEO and AI Search: local and website SEO, Google Business Profile, AI search visibility (GEO) and a keyword and content plan.",
+          hi: "SEO और AI Search: लोकल और वेबसाइट SEO, Google Business Profile, AI सर्च में दिखना (GEO) और कीवर्ड व कंटेंट प्लान।"
+        },
+        {
+          id: 'web',
+          keywords: /\b(web|website|web development|app|online store|ecommerce|landing page|mobile design)\b/i,
+          en: "Web Development: business and landing pages, online stores, mobile-first design, with speed and security.",
+          hi: "वेब डेवलपमेंट: बिज़नेस और लैंडिंग पेज, ऑनलाइन स्टोर, मोबाइल-फ्रेंडली डिज़ाइन, तेज़ और सुरक्षित।"
+        },
+        {
+          id: 'automation',
+          keywords: /\b(automation|ai tools|workflow|crm|follow-up|follow up|reminders|lead capture|chatbots)\b/i,
+          en: "Business Automation and AI: automatic follow-ups and reminders, lead capture, WhatsApp and email workflows, chatbots and AI tools. We also support you after launch.",
+          hi: "ऑटोमेशन और AI: ऑटोमैटिक फॉलो-अप और रिमाइंडर, लीड कैप्चर, WhatsApp और ईमेल वर्कफ़्लो, चैटबॉट और AI टूल्स। लॉन्च के बाद भी हम सपोर्ट करते हैं।"
+        },
+        {
+          id: 'video',
+          keywords: /\b(video|videos|film|films|reels|social media|branding|logo|brand look|editing|content)\b/i,
+          en: "Video and Content: brand and product films, reels and ads, editing, social media content, account handling, logo and brand look.",
+          hi: "वीडियो और कंटेंट: ब्रांड और प्रोडक्ट फिल्म, रील्स और ऐड्स, एडिटिंग, सोशल मीडिया कंटेंट, अकाउंट हैंडलिंग, लोगो और ब्रांड लुक।"
+        },
+        {
+          id: 'review',
+          keywords: /\b(review|business review|growth plan|audit|gaps|quick wins|growth plan)\b/i,
+          en: "Business Review: we review your marketing, website and follow-up, list gaps and quick wins, and give you a written growth plan you can use with us or without us.",
+          hi: "बिज़नेस रिव्यू: हम आपकी मार्केटिंग, वेबसाइट और फॉलो-अप देखते हैं, कमियाँ और जल्दी जीत बताते हैं, और लिखित ग्रोथ प्लान देते हैं जो आप हमारे साथ या बिना हमारे इस्तेमाल कर सकते हैं।"
+        },
+        {
+          id: 'process',
+          keywords: /\b(process|how we work|how do you work|steps|discover|plan|build|grow|tareeka)\b/i,
+          en: "4 steps: Discover, Plan, Build, Grow. We learn your business, make a clear plan, create everything, then track and improve every month.",
+          hi: "4 स्टेप: Discover, Plan, Build, Grow। हम आपका बिज़नेस समझते हैं, साफ़ प्लान बनाते हैं, सब कुछ तैयार करते हैं और हर महीने सुधार करते हैं।"
+        },
+        {
+          id: 'clients',
+          keywords: /\b(clients|trusted by|brands|decathlon|mohotsav|pw|vidyapeeth|portfolio|customers)\b/i,
+          en: "We have worked with brands like Decathlon, Mohotsav and PW Vidyapeeth, and create for construction, real estate and retail businesses.",
+          hi: "हमने Decathlon, Mohotsav और PW Vidyapeeth जैसे ब्रांड्स के साथ काम किया है, और कंस्ट्रक्शन, रियल एस्टेट और रिटेल बिज़नेस के लिए बनाते हैं।"
+        },
+        {
+          id: 'pricing',
+          keywords: /\b(price|pricing|cost|rate|fee|fees|budget|charge|kitna|kitne|paisa|daam)\b/i,
+          en: "Pricing depends on what you need. Share your details in the contact form and we will reply on WhatsApp with a clear plan.",
+          hi: "कीमत आपकी ज़रूरत पर निर्भर करती है। कॉन्टैक्ट फॉर्म भरें, हम WhatsApp पर साफ़ प्लान के साथ जवाब देंगे।"
+        },
+        {
+          id: 'get_started',
+          keywords: /\b(get started|start|begin|hire|onboard|kaise shuru|shuru kare|shuruat)\b/i,
+          en: "Getting started is easy: fill in the contact form or message us on WhatsApp. We reply within one business day.",
+          hi: "शुरू करना आसान है: कॉन्टैक्ट फॉर्म भरें या WhatsApp पर मैसेज करें। हम एक बिज़नेस डे में जवाब देते हैं।"
+        },
+        {
+          id: 'contact',
+          keywords: /\b(contact|reach|phone|call|email|whatsapp|instagram|linkedin|facebook|sampark)\b/i,
+          en: "You can reach us through the contact form, WhatsApp, Instagram, LinkedIn or Facebook. See the Contact section. We reply within one business day.",
+          hi: "आप कॉन्टैक्ट फॉर्म, WhatsApp, Instagram, LinkedIn या Facebook से संपर्क कर सकते हैं। हम एक बिज़नेस डे में जवाब देते हैं।"
+        }
+      ];
+
+      const FALLBACK = {
+        en: "I am not sure about that. Please use the contact form or WhatsApp and our team will reply within one business day.",
+        hi: "इस बारे में मुझे पक्का पता नहीं है। कृपया कॉन्टैक्ट फॉर्म या WhatsApp का इस्तेमाल करें, हमारी टीम एक बिज़नेस डे में जवाब देगी।"
+      };
+
+      const QUICK_CHIPS = {
+        en: ["What does Jagvix do?", "Our services", "Where are you based?", "How to get started?"],
+        hi: ["Jagvix क्या करता है?", "हमारी सेवाएँ", "आप कहाँ स्थित हैं?", "कैसे शुरू करें?"]
+      };
+
+      let currentLang = 'en';
+      let memoryHistory = { createdAt: Date.now(), messages: [] };
+
+      // Language detection
+      function detectLanguage(text) {
+        if (/[\u0900-\u097F]/.test(text)) return 'hi';
+        const hinglishPattern = /\b(kya|kaise|hai|hain|aap|hum|kahan|kitna|kitne|chahiye|batao|bataiye|karte|kaam|seva|sampark|naukri|paisa|daam|karo|kaun|kab|kyu|kyun|shuru|madad|namaste|pranam|bata|batao|karen|kare|ke|ki|ko|se|me|mein|par)\b/i;
+        if (hinglishPattern.test(text)) return 'hi';
+        return 'en';
+      }
+
+      // Update UI elements to match current language
+      function updateUILanguage(lang) {
+        currentLang = lang;
+        if (lang === 'hi') {
+          chatInput.placeholder = "Jagvix के बारे में पूछें…";
+          chatInput.setAttribute('aria-label', "Jagvix के बारे में पूछें");
+          chatSendBtn.textContent = "भेजें";
+          footerNote.textContent = "चैट हर 24 घंटे में अपने आप डिलीट हो जाती है।";
+        } else {
+          chatInput.placeholder = "Ask about Jagvix…";
+          chatInput.setAttribute('aria-label', "Ask about Jagvix");
+          chatSendBtn.textContent = "Send";
+          footerNote.textContent = "Chats are deleted automatically every 24 hours.";
+        }
+        renderQuickChips(lang);
+      }
+
+      function renderQuickChips(lang) {
+        quickRepliesContainer.innerHTML = '';
+        const chips = QUICK_CHIPS[lang] || QUICK_CHIPS.en;
+        chips.forEach((q) => {
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.textContent = q;
+          btn.addEventListener('click', () => handleUserInput(q));
+          quickRepliesContainer.appendChild(btn);
+        });
+      }
+
+      // Safely append a message to DOM without XSS
+      function appendMessageDOM(role, text) {
+        const msgDiv = document.createElement('div');
+        msgDiv.className = `chat-msg ${role === 'user' ? 'user' : 'bot'}`;
+        msgDiv.textContent = text;
+        msgsContainer.appendChild(msgDiv);
+        msgsContainer.scrollTop = msgsContainer.scrollHeight;
+      }
+
+      // Storage Management (24-Hour Client-Side Auto-Delete)
+      function loadStorage() {
+        try {
+          const raw = localStorage.getItem(STORAGE_KEY);
+          if (raw) {
+            const data = JSON.parse(raw);
+            const now = Date.now();
+            if (now - (data.createdAt || 0) > TWENTY_FOUR_HOURS) {
+              clearStorage();
+              return null;
+            }
+            // Filter messages older than 24 hours
+            data.messages = (data.messages || []).filter(m => (now - m.ts) < TWENTY_FOUR_HOURS);
+            saveStorage(data);
+            return data;
+          }
+        } catch (e) {
+          // LocalStorage blocked or error
+        }
+        return null;
+      }
+
+      function saveStorage(data) {
+        memoryHistory = data;
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+        } catch (e) {
+          // LocalStorage quota or access denied
+        }
+      }
+
+      function clearStorage() {
+        memoryHistory = { createdAt: Date.now(), messages: [] };
+        try {
+          localStorage.removeItem(STORAGE_KEY);
+        } catch (e) {}
+      }
+
+      // Restore messages or show welcome
+      function renderHistory() {
+        msgsContainer.innerHTML = '';
+        const data = loadStorage() || memoryHistory;
+        if (data && data.messages && data.messages.length > 0) {
+          data.messages.forEach(m => appendMessageDOM(m.role, m.text));
+        } else {
+          // Welcome message
+          const welcome = "Hi! I am the Jagvix assistant. Ask me anything about our company.";
+          appendMessageDOM('bot', welcome);
+          saveMessage('bot', welcome);
+        }
+      }
+
+      function saveMessage(role, text) {
+        let data = loadStorage() || memoryHistory;
+        if (!data || !data.createdAt) {
+          data = { createdAt: Date.now(), messages: [] };
+        }
+        data.messages.push({ role, text, ts: Date.now() });
+        saveStorage(data);
+      }
+
+      // Knowledge Base Matcher
+      function getBotAnswer(query, lang) {
+        for (const item of KNOWLEDGE_BASE) {
+          if (item.keywords.test(query)) {
+            return lang === 'hi' ? item.hi : item.en;
+          }
+        }
+        return lang === 'hi' ? FALLBACK.hi : FALLBACK.en;
+      }
+
+      let isBotTyping = false;
+
+      function handleUserInput(rawText) {
+        const text = sanitizeText(rawText);
+        if (!text || isBotTyping) return;
+
+        // Detect language for latest message
+        const lang = detectLanguage(text);
+        updateUILanguage(lang);
+
+        // Render user message
+        appendMessageDOM('user', text);
+        saveMessage('user', text);
+        chatInput.value = '';
+
+        // Typing indicator
+        isBotTyping = true;
+        const typingDiv = document.createElement('div');
+        typingDiv.className = 'chat-msg bot typing-indicator';
+        typingDiv.innerHTML = '<span></span><span></span><span></span>';
+        msgsContainer.appendChild(typingDiv);
+        msgsContainer.scrollTop = msgsContainer.scrollHeight;
+
+        // 350-550ms typing delay
+        const delay = Math.floor(Math.random() * 200) + 350;
+        setTimeout(() => {
+          if (typingDiv.parentNode) {
+            typingDiv.parentNode.removeChild(typingDiv);
+          }
+          const reply = getBotAnswer(text, lang);
+          appendMessageDOM('bot', reply);
+          saveMessage('bot', reply);
+          isBotTyping = false;
+        }, delay);
+      }
+
+      // Event Listeners
+      fab.addEventListener('click', () => {
+        const isOpen = panel.classList.contains('open');
+        panel.classList.toggle('open', !isOpen);
+        fab.setAttribute('aria-expanded', String(!isOpen));
+        if (!isOpen) {
+          loadStorage(); // Verify 24hr expiry upon opening
+          chatInput.focus();
+        }
+      });
+
+      closeBtn.addEventListener('click', () => {
+        panel.classList.remove('open');
+        fab.setAttribute('aria-expanded', 'false');
+      });
+
+      chatSendBtn.addEventListener('click', () => {
+        handleUserInput(chatInput.value);
+      });
+
+      chatInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          handleUserInput(chatInput.value);
+        }
+      });
+
+      // Initialize Chatbot State
+      updateUILanguage('en');
+      renderHistory();
+
+      // Check 24-hr expiry every 5 minutes
+      setInterval(() => {
+        loadStorage();
+      }, 5 * 60 * 1000);
+    })();
+  </script>
+</body>
+</html>
