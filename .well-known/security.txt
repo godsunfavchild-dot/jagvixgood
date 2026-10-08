@@ -1,0 +1,8 @@
+# Jagvix Security Contact (RFC 9116)
+# https://www.jagvix.com/.well-known/security.txt
+
+Contact: mailto:security@jagvix.com
+Preferred-Languages: en, hi
+Canonical: https://www.jagvix.com/.well-known/security.txt
+Policy: https://www.jagvix.com/pages/security-policy.html
+Expires: 2027-12-31T23:59:59.000Z
